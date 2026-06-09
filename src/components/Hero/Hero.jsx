@@ -1,30 +1,43 @@
+import heroPhoto from '../../assets/antonina-city.jpg';
+import styles from './Hero.module.css';
+
 export default function Hero() {
   return (
-    <section className="hero">
-      <div className="hero-left">
-        <span className="hero-eyebrow">7-денний онлайн-процес</span>
-        <h1 className="hero-title">Точка<br /><em>переходу</em></h1>
-        <p className="hero-subtitle">Я більше не хочу так жити.<br />Але поки не бачу як по-іншому.</p>
-        <p className="hero-body">Для жінок, у яких зовні все ніби добре — але всередині все частіше виникає відчуття, що щось стало тісним.</p>
-        <div className="hero-price">
-          <span className="price-current">€20</span>
-          <span className="price-old">€100</span>
-          <span className="price-note">Ціна першого потоку</span>
+    <section className={styles.hero}>
+      <div className={styles.copy}>
+        <span className="section-label">7-денний онлайн-процес</span>
+        <h1>Точка переходу</h1>
+        <p className={styles.lead}>
+          Я більше не хочу так жити. Але поки не бачу як по-іншому.
+        </p>
+        <p className={styles.body}>
+          Для жінок, у яких зовні все ніби добре, але всередині все частіше з'являється чесне відчуття:
+          так більше не хочу.
+        </p>
+
+        <div className={styles.facts} aria-label="Ключові параметри курсу">
+          <span>7 днів</span>
+          <span>15-30 хв/день</span>
+          <span>доступ назавжди</span>
         </div>
-        <div className="hero-actions">
-          <a href="https://instagram.com/tonypashko" className="btn-primary">Написати ПЕРЕХІД в директ</a>
-          <a href="#program" className="btn-secondary">Дізнатися більше</a>
+
+        <div className={styles.price}>
+          <span className={styles.current}>€20</span>
+          <span className={styles.old}>€100</span>
+          <span className={styles.note}>ціна першого потоку</span>
+        </div>
+
+        <div className={styles.actions}>
+          <a href="https://instagram.com/tonypashko" className="btn-primary">Написати ПЕРЕХІД</a>
+          <a href="#program" className="btn-secondary">Подивитись програму</a>
         </div>
       </div>
-      <div className="hero-right">
-        <div className="hero-visual">
-          <div className="quote-card">
-            <div className="decorative-line"></div>
-            <blockquote>
-              «Ти не загубила себе. Ти просто виросла зі старого життя.»
-            </blockquote>
-            <span className="quote-author">— Антоніна Пашко</span>
-          </div>
+
+      <div className={styles.visual}>
+        <img src={heroPhoto} alt="Антоніна Пашко" />
+        <div className={styles.quote}>
+          <p>Це не криза. Це точка переходу.</p>
+          <span>Не більше зусиль - а зупинка і чесна розмова з собою.</span>
         </div>
       </div>
     </section>

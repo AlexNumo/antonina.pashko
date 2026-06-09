@@ -1,0 +1,97 @@
+.map {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  background: var(--white);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 850px;
+}
+
+.header h2 {
+  margin-top: 1rem;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 3rem;
+}
+
+.panel {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: 26px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.after {
+  color: var(--white);
+  background: var(--graphite);
+  border-color: var(--graphite);
+}
+
+.kicker {
+  color: var(--terracotta);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.after .kicker {
+  color: var(--rose);
+}
+
+.panel ul {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel li {
+  padding-left: 1.2rem;
+  position: relative;
+  color: var(--muted);
+}
+
+.after li {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.panel li::before {
+  content: "";
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+
+.bridge {
+  align-self: center;
+  color: var(--terracotta);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 4rem;
+}
+
+@media (max-width: 820px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .bridge {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}

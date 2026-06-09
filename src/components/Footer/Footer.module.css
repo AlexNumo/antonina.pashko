@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem clamp(1rem, 5vw, 5rem);
+  color: rgba(255, 255, 255, 0.72);
+  background: var(--graphite);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer span {
+  color: var(--white);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.footer a {
+  color: var(--rose);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.footer small {
+  font-size: 0.86rem;
+}
+
+@media (max-width: 680px) {
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

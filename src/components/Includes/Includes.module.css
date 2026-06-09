@@ -1,0 +1,77 @@
+.includes {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  background: var(--paper);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 760px;
+}
+
+.header h2 {
+  margin-top: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.card {
+  padding: 1.6rem;
+  border-radius: 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 45px rgba(23, 20, 18, 0.05);
+}
+
+.card span {
+  color: var(--terracotta);
+  font-weight: 900;
+}
+
+.card h3 {
+  margin-top: 2rem;
+}
+
+.card p {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.note {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 22px;
+  color: var(--white);
+  background: var(--terracotta);
+}
+
+.note strong {
+  font-size: 1.2rem;
+}
+
+.note p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

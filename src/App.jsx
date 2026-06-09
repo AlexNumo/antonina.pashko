@@ -7,9 +7,10 @@ import TransformationMap from './components/TransformationMap/TransformationMap'
 import About from './components/About/About';
 import Testimonials from './components/Testimonials/Testimonials';
 import Packages from './components/Packages/Packages';
+import Contact from './components/Contact/Contact';
 import CTA from './components/CTA/CTA';
 import Footer from './components/Footer/Footer';
-import './index.css'; // Імпортуємо глобальні стилі
+import './index.css';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <About />
       <Testimonials />
       <Packages />
+      <Contact />
       <CTA />
       <Footer />
     </>

@@ -1,0 +1,78 @@
+.journey {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  color: var(--white);
+  background: var(--graphite);
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.header h2 {
+  margin-top: 1rem;
+}
+
+.header p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.05rem;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.day {
+  min-height: 270px;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  background: var(--graphite);
+}
+
+.dayId {
+  color: var(--rose);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.day h3 {
+  max-width: 520px;
+  margin-top: 1rem;
+}
+
+.day p {
+  max-width: 540px;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.day small {
+  display: block;
+  margin-top: 1.4rem;
+  color: var(--rose);
+  font-weight: 800;
+}
+
+@media (max-width: 860px) {
+  .header,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .day {
+    min-height: 0;
+  }
+}

@@ -1,0 +1,167 @@
+.packages {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  background: var(--paper);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 820px;
+}
+
+.header h2 {
+  margin-top: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--white);
+}
+
+.featured {
+  color: var(--white);
+  background: var(--graphite);
+  border-color: var(--graphite);
+  transform: translateY(-1rem);
+}
+
+.tag {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: var(--terracotta);
+  background: var(--rose);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.featured .tag {
+  color: var(--graphite);
+  background: var(--white);
+}
+
+.card h3 {
+  margin-top: 1.4rem;
+}
+
+.card p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+.featured p {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 1.8rem 0;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.featured .price {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.price strong {
+  color: var(--terracotta);
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.featured .price strong {
+  color: var(--rose);
+}
+
+.price span {
+  color: var(--muted);
+  font-size: 1.2rem;
+  text-decoration: line-through;
+}
+
+.price small {
+  color: var(--terracotta-dark);
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.featured .price small,
+.featured .price span {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.card ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.card li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--muted);
+}
+
+.featured li {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-weight: 900;
+}
+
+.featured li::before {
+  color: var(--rose);
+}
+
+.note {
+  max-width: 760px;
+  margin: 2rem auto 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.note strong,
+.note a {
+  color: var(--terracotta-dark);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured {
+    transform: none;
+  }
+}

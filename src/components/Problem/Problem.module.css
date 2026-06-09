@@ -1,0 +1,86 @@
+.problem {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  background: var(--white);
+}
+
+.header {
+  max-width: 860px;
+}
+
+.header h2 {
+  margin-top: 1rem;
+}
+
+.header p {
+  max-width: 680px;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.sign {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+}
+
+.sign span {
+  color: var(--terracotta);
+  font-weight: 900;
+}
+
+.sign p {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.32;
+}
+
+.insight {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin-top: 2rem;
+  padding: 1.35rem;
+  border-left: 4px solid var(--terracotta);
+  background: var(--soft);
+}
+
+.insight strong {
+  color: var(--terracotta-dark);
+}
+
+.insight p {
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .sign {
+    min-height: 0;
+  }
+
+  .insight {
+    grid-template-columns: 1fr;
+  }
+}
