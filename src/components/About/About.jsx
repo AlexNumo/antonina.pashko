@@ -32,7 +32,6 @@ export default function About() {
             <span>Кандидат психологічних наук</span>
             <span>Професор психології</span>
             <span>Енерготерапевт</span>
-            <span>@tonypashko</span>
           </div>
         </div>
       </div>

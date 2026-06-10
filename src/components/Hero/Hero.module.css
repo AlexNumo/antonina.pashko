@@ -51,11 +51,13 @@
 }
 
 .price {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.85rem;
   margin-top: 2rem;
+  width: fit-content;
 }
 
 .current {

@@ -148,7 +148,74 @@ h3 {
   color: var(--white);
   background: var(--ink);
   border-radius: 999px;
-  padding: 0.72rem 1rem;
+  padding: 0.72rem 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s ease-in-out;
+}
+
+.nav-links .nav-cta:hover {
+  background: var(--accent-gold, #C49F5A);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(196, 159, 90, 0.3);
+  transform: translateY(-1px);
+}
+
+.nav-links .nav-cta:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(196, 159, 90, 0.2);
+}
+
+.nav-links .nav-cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-primary, #F9F8F6), 0 0 0 5px var(--accent-gold, #C49F5A);
+}
+
+.nav-links a:not(.nav-cta) {
+  color: var(--text-primary, #2D2B2A);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 0.5rem;
+}
+
+.nav-links a:not(.nav-cta):hover {
+  color: var(--accent-gold, #C49F5A);
+}
+
+.nav-links a:not(.nav-cta):focus-visible {
+  outline: 2px dashed var(--accent-gold, #C49F5A);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-primary, #2D2B2A);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.logo-image-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold, #C49F5A);
+  display: inline-block;
+  /* Щоб тримався в рядку з текстом */
+
+  /* Масштабуємо фото всередині кружка. 
+     200% або 300% означає, що ми збільшуємо оригінальне фото в 2-3 рази, 
+     залишаючи видимим лише шматочок */
+  background-size: 500%;
+
+  /* Зміщуємо фокус: перша цифра - по горизонталі (X), друга - по вертикалі (Y).
+     Підбирай ці цифри, щоб зловити обличчя мами (наприклад: центр 20%, або 50% 15%) */
+  background-position: 46% 22%;
+  background-repeat: no-repeat;
 }
 
 .btn-primary,

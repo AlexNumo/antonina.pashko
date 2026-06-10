@@ -55,6 +55,12 @@
   border-radius: 22px;
   color: var(--white);
   background: var(--terracotta);
+  
+  span {
+    color: var(--accent-gold, #F3E5AB);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 }
 
 .note strong {

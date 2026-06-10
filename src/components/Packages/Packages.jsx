@@ -1,39 +1,11 @@
 import styles from './Packages.module.css';
+import DiscountBadge from '../DiscountBadge/DiscountBadge';
+import { COURSE_CONFIG } from '../../config/courseConfig';
 
-const packages = [
-  {
-    name: 'Базовий',
-    tag: 'Самостійно',
-    desc: 'Повне самостійне проходження процесу у своєму темпі.',
-    price: '€20',
-    oldPrice: '€100',
-    featured: false,
-    features: [
-      '7 відео-уроків',
-      '7 аудіо-практик',
-      'робочий зошит',
-      'доступ назавжди',
-      'старт одразу після оплати',
-    ],
-  },
-  {
-    name: 'Супровід',
-    tag: 'З Антоніною',
-    desc: 'Все з базового пакета плюс живий контакт і підтримка протягом тижня.',
-    price: '€20',
-    oldPrice: '€100',
-    featured: true,
-    features: [
-      'все з базового пакета',
-      'Telegram-група з учасницями',
-      'голосові відповіді від Антоніни',
-      'Zoom-зустріч наприкінці',
-      'розбір головних запитів учасниць',
-    ],
-  },
-];
+export default function Packages({ onSelectPackage }) {
 
-export default function Packages() {
+  const visiblePackages = Object.values(COURSE_CONFIG.packages).filter((pkg) => !pkg.hidden);
+
   return (
     <section className={styles.packages} id="packages">
       <div className={styles.container}>
@@ -43,29 +15,57 @@ export default function Packages() {
         </div>
 
         <div className={styles.grid}>
-          {packages.map((pkg) => (
-            <article className={`${styles.card} ${pkg.featured ? styles.featured : ''}`} key={pkg.name}>
-              <span className={styles.tag}>{pkg.tag}</span>
-              <h3>{pkg.name}</h3>
-              <p>{pkg.desc}</p>
-              <div className={styles.price}>
-                <strong>{pkg.price}</strong>
-                <span>{pkg.oldPrice}</span>
-                <small>ціна першого потоку</small>
-              </div>
-              <ul>
-                {pkg.features.map((feature) => <li key={feature}>{feature}</li>)}
-              </ul>
-              <a href="https://instagram.com/tonypashko" className={pkg.featured ? 'btn-light' : 'btn-primary'}>
-                Написати ПЕРЕХІД
-              </a>
-            </article>
-          ))}
+          {visiblePackages.map((pkg) => {
+            const hasPlacesLimit = pkg.availablePlaces !== undefined;
+            const isSoldOut = hasPlacesLimit && pkg.availablePlaces <= 0;
+
+            return (
+              <article 
+                className={`${styles.card} ${pkg.featured ? styles.featured : ''} ${isSoldOut ? styles.soldOutCard : ''}`} 
+                key={pkg.name}
+              >
+                <DiscountBadge oldPrice={pkg.oldPrice} newPrice={pkg.price} />
+                
+                <span className={styles.tag}>{pkg.tag}</span>
+                <h3>{pkg.name}</h3>
+                <p>{pkg.desc}</p>
+                
+                <div className={styles.price}>
+                  <strong>{pkg.price}</strong>
+                  <span>{pkg.oldPrice}</span>
+                  <small>ціна першого потоку</small>
+                </div>
+
+                {hasPlacesLimit && (
+                  <div className={`${styles.placesBadge} ${isSoldOut ? styles.placesOut : styles.placesLeft}`}>
+                    {isSoldOut ? 'Місця закінчилися' : <>Залишилось місць: <strong>{pkg.availablePlaces}</strong></>}
+                  </div>
+                )}
+
+                <ul>
+                  {pkg.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+
+                {isSoldOut ? (
+                  <span className={styles.btnDisabled}>Місць немає</span>
+                ) : (
+                  <button 
+                    onClick={() => onSelectPackage(pkg.name)}
+                    className={pkg.featured ? 'btn-light' : 'btn-primary'}
+                    style={{ width: '100%', border: 0, cursor: 'pointer' }}
+                  >
+                    Обрати {pkg.name}
+                  </button>
+                )}
+              </article>
+            );
+          })}
         </div>
 
         <p className={styles.note}>
-          Напиши <strong>ПЕРЕХІД</strong> в директ Instagram <a href="https://instagram.com/tonypashko">@tonypashko</a>,
-          і Антоніна надішле деталі особисто.
+          Залишилися питання щодо тарифів? Запитай у <a href="https://instagram.com/tonypashko" target="_blank" rel="noreferrer"> @tonypashko </a>в Instagram.
         </p>
       </div>
     </section>

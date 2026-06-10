@@ -1,0 +1,81 @@
+.badge {
+  position: absolute;
+  /* Робимо його більшим та помітнішим */
+  top: 25px;
+  right: 16px;
+
+  /* Ідеальний круг */
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  /* Насичений, дорогий колір */
+  background: var(--terracotta);
+  color: var(--white);
+
+  /* Типографіка: жирна, чітка */
+  font-weight: 900;
+  font-size: 1.1rem;
+  /* Збільшений шрифт */
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  /* Легке звуження для стилю */
+  text-align: center;
+
+  /* Чіткий контур, щоб виділити на будь-якому фоні */
+  border: 2=1px solid var(--white);
+
+  /* --- ЕФЕКТ ПРЕМІАЛЬНОСТІ --- */
+
+  /* Складний градієнт для ефекту "об'ємної наклейки" */
+  background-image: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+
+  /* Потужна об'ємна тінь */
+  box-shadow:
+    0 8px 14px rgba(184, 65, 47, 0.4),
+    /* Тінь кольору теракоти */
+    inset 0 2px 5px rgba(255, 255, 255, 0.25);
+  /* Внутрішнє світло */
+
+  /* Початковий нахил */
+  transform: rotate(5deg) scale(1.05);
+
+  /* Притискаємо поверх усього */
+  z-index: 100;
+
+  /* ПОСИЛЕНА АНІМАЦІЯ: пульсація та м'яке сяйво */
+  animation: pulsePremium 2.5s infinite ease-in-out;
+}
+
+/* Старий варіант "сердечка" більше не потрібен, але ми переробимо його
+   на "акцентний" варіант (наприклад, для темних карток) */
+.heartVariant {
+  background: var(--rose);
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+  box-shadow: 0 8px 24px rgba(226, 196, 196, 0.5);
+  /* Ніжніша тінь */
+}
+
+/* ПОСИЛЕНА АНІМАЦІЯ: додаємо м'яке свічення по контуру */
+@keyframes pulsePremium {
+  0% {
+    transform: rotate(5deg) scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(184, 65, 47, 0.1));
+  }
+
+  50% {
+    transform: rotate(5deg) scale(1.12);
+    /* Більший масштаб */
+    /* М'яке "світлове коло" навколо бейджа */
+    filter: drop-shadow(0 0 12px rgba(184, 65, 47, 0.6));
+  }
+
+  100% {
+    transform: rotate(5deg) scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(184, 65, 47, 0.1));
+  }
+}
