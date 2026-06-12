@@ -4,94 +4,184 @@
 }
 
 .container {
-  max-width: 1180px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .header {
-  max-width: 850px;
+  max-width: 750px;
+  margin-bottom: 4rem;
 }
 
 .header h2 {
   margin-top: 1rem;
 }
 
-.columns {
+/* Десктопні заголовки стовпчиків */
+.tableHeaders {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 1rem;
-  align-items: stretch;
-  margin-top: 3rem;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 1.5rem;
+  padding: 0 1.5rem 1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.panel {
-  padding: clamp(1.4rem, 3vw, 2rem);
-  border-radius: 26px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-}
-
-.after {
-  color: var(--white);
-  background: var(--graphite);
-  border-color: var(--graphite);
-}
-
-.kicker {
-  color: var(--terracotta);
-  font-size: 0.78rem;
+.columnTitle {
+  font-size: 1.3rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.after .kicker {
-  color: var(--rose);
-}
-
-.panel ul {
-  display: grid;
-  gap: 1rem;
-  margin: 2rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.panel li {
-  padding-left: 1.2rem;
-  position: relative;
   color: var(--muted);
 }
 
-.after li {
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.panel li::before {
-  content: "";
-  position: absolute;
-  top: 0.7em;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--terracotta);
-}
-
-.bridge {
-  align-self: center;
+.columnTitle:last-child {
   color: var(--terracotta);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 4rem;
 }
 
+/* Список рядків */
+.rowsList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Окремий рядок трансформації */
+.transformationRow {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Ефект наведення на рядок */
+.transformationRow:hover {
+  background: var(--paper);
+  border-radius: 16px;
+  border-color: transparent;
+}
+
+/* Клітинка ТОЧКИ А */
+.beforeCell p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.transformationRow:hover .beforeCell p {
+  color: var(--muted);
+  /* Злегка приглушуємо стан "зараз" */
+}
+
+/* Клітинка Стрілочки */
+.bridgeCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--line);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.transformationRow:hover .bridgeCell {
+  color: var(--terracotta);
+  transform: translateX(4px);
+  /* Інтерактивний рух праворуч */
+}
+
+/* Клітинка ТОЧКИ Б */
+.afterCell p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Підсвічуємо бажаний результат */
+.transformationRow:hover .afterCell p {
+  color: var(--terracotta);
+}
+
+/* Мобільні бейджі (приховані за замовчуванням) */
+.mobileBadgeBefore,
+.mobileBadgeAfter {
+  display: none;
+}
+
+/* Адаптивність під мобільні екрани */
 @media (max-width: 820px) {
-  .columns {
-    grid-template-columns: 1fr;
+  .tableHeaders {
+    display: none;
+    /* Ховаємо десктопні заголовки */
   }
 
-  .bridge {
-    justify-self: center;
+  .transformationRow {
+    grid-template-columns: 1fr;
+    /* Усе в один стовпчик */
+    gap: 1rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    /* Центруємо весь текст у рядку */
+  }
+
+  .transformationRow:hover {
+    background: transparent;
+    /* Вимикаємо ховер-фон на мобілках */
+  }
+
+  /* Центруємо стрілочку на мобільному */
+  .bridgeCell {
+    justify-content: center;
+    /* Центруємо по горизонталі всередині флекс-контейнера */
+    align-self: center;
+    /* Центруємо сам блок у грид-сітці */
+    padding: 0.2rem 0;
+    color: var(--terracotta);
     transform: rotate(90deg);
+    /* Повертаємо стрілочку вниз */
+    width: auto;
+    /* Скидаємо фіксовану десктопну ширину */
+  }
+
+  /* Скасовуємо десктопний зсув стрілочки праворуч, робимо легкий рух вниз при ховері */
+  .transformationRow:hover .bridgeCell {
+    transform: rotate(90deg) translateX(4px);
+  }
+
+  /* Акуратні текстові бейджі по центру */
+  .mobileBadgeBefore,
+  .mobileBadgeAfter {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+
+  .mobileBadgeBefore {
+    color: var(--muted);
+  }
+
+  .mobileBadgeAfter {
+    color: var(--terracotta);
+  }
+
+  /* Скасовуємо тьмяність тексту ТОЧКИ А на мобілці для кращої читабельності */
+  .transformationRow:hover .beforeCell p {
+    color: var(--ink);
+  }
+
+  /* Забезпечуємо красиві відступи для параграфів на мобільних */
+  .beforeCell p,
+  .afterCell p {
+    max-width: 450px;
+    /* Щоб текст не розповзався занадто широко на планшетах */
+    margin: 0 auto;
   }
 }

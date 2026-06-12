@@ -1,16 +1,21 @@
 :root {
   --paper: #fbf8f4;
   --white: #ffffff;
-  --ink: #171412;
+  --ink: #2D2B2A;
+  /* Змінено з #171412 на м'який дорогий графіт */
   --muted: #6d625c;
   --soft: #efe6df;
-  --line: #e3d8cf;
+  --line: rgba(184, 65, 47, 0.12);
+  /* Тонкі лінії з легким теракотовим підтоном */
   --graphite: #24201d;
   --terracotta: #b8412f;
   --terracotta-dark: #8f2f22;
   --rose: #f3d9d1;
-  --shadow: 0 24px 70px rgba(23, 20, 18, 0.12);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow: 0 24px 70px rgba(23, 20, 18, 0.06);
+  /* Зменшено агресивність тіні */
+
+  /* Підключаємо чистий основний шрифт */
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--paper);
 }
@@ -32,6 +37,8 @@ body {
   color: var(--ink);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  /* Робить шрифти пласкішими та дорожчими на вигляд */
 }
 
 body,
@@ -57,30 +64,34 @@ p {
   margin: 0;
 }
 
+/* Налаштування журнальних заголовків із засічками */
 h1,
 h2,
 h3,
 .nav-logo {
   font-family: "Playfair Display", Georgia, serif;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
+  /* Легке звуження для преміального ефекту */
 }
 
 h1 {
   font-size: clamp(3.6rem, 8vw, 7.6rem);
-  line-height: 0.92;
-  font-weight: 500;
+  line-height: 0.95;
+  font-weight: 700;
+  /* Збільшено жирність для характеру */
 }
 
 h2 {
   font-size: clamp(2.2rem, 4.7vw, 4.5rem);
-  line-height: 1;
-  font-weight: 500;
+  line-height: 1.1;
+  font-weight: 600;
+  /* Додано вагу для читабельності */
 }
 
 h3 {
   font-size: clamp(1.35rem, 2vw, 1.85rem);
-  line-height: 1.15;
-  font-weight: 500;
+  line-height: 1.25;
+  font-weight: 600;
 }
 
 .section-label {
@@ -92,6 +103,8 @@ h3 {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  /* Мітки мають бути без засічок */
 }
 
 .section-label::before {
@@ -101,9 +114,10 @@ h3 {
   background: currentColor;
 }
 
+/* Навігація */
 .site-nav {
   position: fixed;
-  z-index: 20;
+  z-index: 990;
   top: 0;
   left: 0;
   right: 0;
@@ -112,16 +126,31 @@ h3 {
   justify-content: space-between;
   gap: 2rem;
   padding: 1.1rem clamp(1rem, 4vw, 4rem);
-  background: rgba(251, 248, 244, 0.82);
-  border-bottom: 1px solid rgba(227, 216, 207, 0.7);
-  backdrop-filter: blur(18px);
+  background: rgba(251, 248, 244, 0.85);
+  border-bottom: 1px solid rgba(184, 65, 47, 0.08);
+  backdrop-filter: blur(20px);
 }
 
 .nav-logo {
   color: var(--ink);
-  font-size: 1.18rem;
+  font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-image-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-gold, #C49F5A);
+  display: inline-block;
+  background-size: 500%;
+  background-position: 46% 22%;
+  background-repeat: no-repeat;
 }
 
 .nav-links {
@@ -133,121 +162,85 @@ h3 {
   padding: 0;
 }
 
-.nav-links a {
-  color: var(--muted);
-  font-size: 0.92rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.nav-links a:hover {
-  color: var(--ink);
-}
-
-.nav-links .nav-cta {
-  color: var(--white);
-  background: var(--ink);
-  border-radius: 999px;
-  padding: 0.72rem 1.5rem;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.25s ease-in-out;
-}
-
-.nav-links .nav-cta:hover {
-  background: var(--accent-gold, #C49F5A);
-  color: var(--white);
-  box-shadow: 0 4px 12px rgba(196, 159, 90, 0.3);
-  transform: translateY(-1px);
-}
-
-.nav-links .nav-cta:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(196, 159, 90, 0.2);
-}
-
-.nav-links .nav-cta:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--bg-primary, #F9F8F6), 0 0 0 5px var(--accent-gold, #C49F5A);
-}
-
 .nav-links a:not(.nav-cta) {
-  color: var(--text-primary, #2D2B2A);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
   padding: 0.5rem;
 }
 
 .nav-links a:not(.nav-cta):hover {
-  color: var(--accent-gold, #C49F5A);
+  color: var(--terracotta);
 }
 
 .nav-links a:not(.nav-cta):focus-visible {
-  outline: 2px dashed var(--accent-gold, #C49F5A);
+  outline: 2px dashed var(--terracotta);
   outline-offset: 4px;
   border-radius: 4px;
 }
 
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+/* Кнопка в меню */
+.nav-links .nav-cta {
+  color: var(--white);
+  background: var(--ink);
+  border-radius: 999px;
+  padding: 0.72rem 1.6rem;
   text-decoration: none;
-  color: var(--text-primary, #2D2B2A);
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.logo-image-bg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--accent-gold, #C49F5A);
   display: inline-block;
-  /* Щоб тримався в рядку з текстом */
-
-  /* Масштабуємо фото всередині кружка. 
-     200% або 300% означає, що ми збільшуємо оригінальне фото в 2-3 рази, 
-     залишаючи видимим лише шматочок */
-  background-size: 500%;
-
-  /* Зміщуємо фокус: перша цифра - по горизонталі (X), друга - по вертикалі (Y).
-     Підбирай ці цифри, щоб зловити обличчя мами (наприклад: центр 20%, або 50% 15%) */
-  background-position: 46% 22%;
-  background-repeat: no-repeat;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.nav-links .nav-cta:hover {
+  background: var(--terracotta);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(184, 65, 47, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-links .nav-cta:active {
+  transform: translateY(1px);
+}
+
+/* Загальні стилі кнопок */
 .btn-primary,
 .btn-secondary,
 .btn-light {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  min-height: 52px;
   border-radius: 999px;
-  padding: 0.9rem 1.35rem;
+  padding: 0.9rem 1.8rem;
   font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-primary {
   color: var(--white);
   background: var(--terracotta);
   border: 1px solid var(--terracotta);
+  box-shadow: 0 10px 25px rgba(184, 65, 47, 0.1);
 }
 
 .btn-secondary {
   color: var(--ink);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(184, 65, 47, 0.2);
 }
 
 .btn-light {
-  color: var(--ink);
+  color: #000000;
   background: var(--white);
   border: 1px solid var(--white);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover,
@@ -259,6 +252,17 @@ h3 {
 .btn-primary:hover {
   background: var(--terracotta-dark);
   border-color: var(--terracotta-dark);
+  box-shadow: 0 12px 30px rgba(143, 47, 34, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(184, 65, 47, 0.04);
+  border-color: var(--terracotta);
+}
+
+.btn-light:hover {
+  background: #FFF9F6;
+  box-shadow: 0 12px 25px rgba(184, 65, 47, 0.08);
 }
 
 @media (max-width: 820px) {

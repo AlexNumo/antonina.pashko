@@ -67,7 +67,8 @@
 }
 
 .insight p {
-  color: var(--muted);
+  color: var(--terracotta);
+  font-weight: 700;
 }
 
 @media (max-width: 720px) {

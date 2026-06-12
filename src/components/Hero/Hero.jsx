@@ -13,7 +13,7 @@ export default function Hero({ onSelectPackage }) {
         <span className="section-label">{COURSE_CONFIG.subtitle}</span>
         <h1>{COURSE_CONFIG.title}</h1>
         <p className={styles.lead}>
-          Я чітко усвідомлюю, що готова змінити своє життя, але мені не вистачає орієнтирів, куди рухатися далі.
+          Я чітко усвідомлюю, що готова змінити своє життя, але мені не вистачає орієнтирів, куди рухатися далі
         </p>
         <p className={styles.body}>
           Для жінок, у яких зовні все ніби добре, але всередині все частіше з'являється чесне відчуття:
@@ -51,7 +51,7 @@ export default function Hero({ onSelectPackage }) {
         <img src={heroPhoto} alt="Антоніна Пашко" />
         <div className={styles.quote}>
           <p>Це не криза. Це точка переходу.</p>
-          <span>Не більше зусиль - а зупинка і чесна розмова з собою.</span>
+          <span>Не більше зусиль - а зупинка і чесна розмова із собою.</span>
         </div>
       </div>
     </section>

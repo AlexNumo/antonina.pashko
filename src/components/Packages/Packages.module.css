@@ -19,57 +19,97 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
+  gap: 2rem;
+  margin-top: 4rem;
+  align-items: stretch;
 }
 
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.4rem, 3vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: var(--white);
+  padding: clamp(1.8rem, 4vw, 2.5rem);
+  border: 1px solid rgba(184, 65, 47, 0.15);
+  border-radius: 32px;
+  background: #FFF9F6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .featured {
-  color: var(--white);
-  background: var(--graphite);
-  border-color: var(--graphite);
+  background: #FFFDFB;
+  border: 1px solid rgba(184, 65, 47, 0.25);
+  color: #2D2B2A;
   transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(45, 43, 42, 0.15);
   z-index: 2;
+  box-shadow: inset 0 0 40px rgba(255, 240, 232, 0.6), 0 25px 60px rgba(184, 65, 47, 0.07);
+}
+
+.flameCard {
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+}
+
+.cardVideoBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.62;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
 }
 
 .tag {
   width: fit-content;
   border-radius: 999px;
-  padding: 0.45rem 0.75rem;
-  color: var(--terracotta);
-  background: var(--rose);
+  padding: 0.45rem 0.85rem;
+  color: #B8412F;
+  background: #FCEAE4;
   font-size: 0.75rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.featured .tag {
-  color: var(--graphite);
-  background: var(--white);
+.flameCard .tag {
+  color: #000000;
+  background: #FFFFFF;
 }
 
 .card h3 {
   margin-top: 1.4rem;
+  font-size: 1.75rem;
+  color: var(--ink);
+}
+
+.flameCard h3 {
+  color: #FFFFFF;
 }
 
 .card p {
   margin-top: 0.75rem;
   color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.featured p {
-  color: rgba(255, 255, 255, 0.68);
+.flameCard p {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .price {
@@ -79,22 +119,23 @@
   gap: 0.75rem;
   margin: 1.8rem 0;
   padding: 1.1rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid rgba(184, 65, 47, 0.12);
+  border-bottom: 1px solid rgba(184, 65, 47, 0.12);
 }
 
-.featured .price {
-  border-color: rgba(255, 255, 255, 0.16);
+.flameCard .price {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .price strong {
-  color: var(--terracotta);
+  color: #B8412F;
   font-size: 3rem;
   line-height: 1;
+  font-weight: 900;
 }
 
-.featured .price strong {
-  color: var(--rose);
+.flameCard .price strong {
+  color: #FF9E7A;
 }
 
 .price span {
@@ -103,21 +144,26 @@
   text-decoration: line-through;
 }
 
-.price small {
-  color: var(--terracotta-dark);
-  font-weight: 850;
-  text-transform: uppercase;
+.flameCard .price span {
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.featured .price small,
-.featured .price span {
-  color: rgba(255, 255, 255, 0.58);
+.price small {
+  color: #913020;
+  font-weight: 850;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.flameCard .price small {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .card ul {
   display: grid;
-  gap: 0.75rem;
-  margin: 0 0 2rem;
+  gap: 0.9rem;
+  margin: 0 0 2.5rem;
   padding: 0;
   list-style: none;
   flex: 1;
@@ -125,85 +171,70 @@
 
 .card li {
   position: relative;
-  padding-left: 1.5rem;
-  color: var(--muted);
+  padding-left: 1.6rem;
+  color: #4A4543;
+  font-size: 1rem;
+  line-height: 1.45;
 }
 
-.featured li {
-  color: rgba(255, 255, 255, 0.76);
+.flameCard li {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .card li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--terracotta);
+  color: #B8412F;
   font-weight: 900;
 }
 
-.featured li::before {
-  color: var(--rose);
+.flameCard li::before {
+  color: #FF9E7A;
 }
 
 .note {
   max-width: 760px;
-  margin: 2rem auto 0;
+  margin: 3rem auto 0;
   color: var(--muted);
   text-align: center;
 }
 
-.note strong,
 .note a {
-  color: var(--terracotta-dark);
+  color: #B8412F;
   font-weight: 900;
   text-decoration: none;
 }
 
-@media (max-width: 860px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .featured {
-    transform: none;
-  }
-}
-
-/* --- Нові стилі для місць та статусів --- */
-
-/* Контейнер для плашки місць */
 .placesBadge {
   margin-bottom: 1.5rem;
   padding: 0.6rem 1rem;
-  border-radius: 12px;
-  font-size: 0.9rem;
+  border-radius: 14px;
+  font-size: 0.88rem;
   width: fit-content;
 }
 
-/* Якщо місця ще є */
 .placesLeft {
-  background: rgba(196, 159, 90, 0.15);
-  color: var(--terracotta-dark);
-  border: 1px solid rgba(196, 159, 90, 0.3);
+  background: #FCEAE4;
+  color: #913020;
+  border: 1px solid rgba(184, 65, 47, 0.2);
 }
 
 .placesLeft strong {
-  color: var(--terracotta);
+  color: #B8412F;
   font-weight: 900;
 }
 
-/* Особливий колір тексту для місць всередині темної (featured) картки */
-.featured .placesLeft {
+.flameCard .placesLeft {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--rose);
+  color: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.featured .placesLeft strong {
-  color: var(--white);
+.flameCard .placesLeft strong {
+  color: #FF9E7A;
 }
 
-/* Якщо місця КІНЧИЛИСЯ */
 .placesOut {
   background: #F2E8E8;
   color: #A65959;
@@ -213,17 +244,15 @@
   letter-spacing: 0.05em;
 }
 
-/* Візуально приглушуємо картку, на яку не можна записатися */
 .soldOutCard {
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
-/* Стиль для заблокованої кнопки */
 .btnDisabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 999px;
   background: #EAEAEA;
   color: #999999;
@@ -234,4 +263,78 @@
   border: 1px solid #DCDCDC;
   cursor: not-allowed;
   user-select: none;
+  width: 100%;
+}
+
+.videoBtn {
+  position: relative;
+  width: 100%;
+  min-height: 54px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  background: #FFF0E8;
+  transition: transform 0.2s ease;
+}
+
+.videoBtn:hover {
+  transform: scale(1.01);
+}
+
+.videoBtn:active {
+  transform: scale(0.99);
+}
+
+.btnVideoBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+}
+
+.videoBtnText {
+  position: relative;
+  z-index: 2;
+  color: #000000;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+}
+
+.standardBtn {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  transition: background 0.2s ease;
+}
+
+.btnText {
+  color: inherit;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .featured {
+    transform: none;
+  }
 }

@@ -1,60 +1,175 @@
 .testimonials {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  /* Прибираємо бокові паддінги з секції, щоб карусель йшла від краю до краю */
   background: var(--white);
+  overflow: hidden;
 }
 
 .container {
   max-width: 1180px;
   margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 5rem);
 }
 
 .header {
   max-width: 720px;
+  margin-bottom: 4rem;
 }
 
 .header h2 {
   margin-top: 1rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
+/* Контейнер маски для безкінечної стрічки */
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+
+  /* Ефектні м'які тіні-градієнти по краях екрана, щоб картки плавно з'являлися */
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
 }
 
+/* Доріжка, яка рухається вліво */
+.marqueeTrack {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+}
+
+/* Зупиняємо карусель при наведенні мишки */
+.marqueeContainer:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+/* Новий ніжний преміальний стиль картки відгуку */
 .card {
-  min-height: 260px;
+  width: 380px;
+  /* Фіксована ширина картки у стрічці */
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.5rem;
-  border-radius: 24px;
-  color: var(--white);
-  background: var(--graphite);
+  padding: 2rem;
+  border-radius: 28px;
+  background: var(--paper);
+  /* Ніжний кремовий/паперовий фон */
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(45, 43, 42, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card:nth-child(2) {
-  background: var(--terracotta);
+/* Ефект підсвічування окремої картки при наведенні */
+.card:hover {
+  transform: translateY(-6px);
+  background: var(--white);
+  border-color: var(--terracotta);
+  box-shadow: 0 15px 35px rgba(184, 65, 47, 0.06);
 }
 
-.card p {
-  font-size: 1.06rem;
-  line-height: 1.48;
+/* Верхня плашка верифікації */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1rem;
 }
 
-.card span {
-  margin-top: 1.5rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 800;
+.verifiedIcon {
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
 }
 
-@media (max-width: 820px) {
-  .grid {
-    grid-template-columns: 1fr;
+.verifiedLabel {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Текст відгуку */
+.reviewText {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 2rem 0;
+  font-style: italic;
+}
+
+/* Інформація про жінку (Аватар + Підпис) */
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(45, 43, 42, 0.06);
+  padding-top: 1.2rem;
+}
+
+/* Заглушка під аватарку з першою літерою імені */
+.avatarPlaceholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--rose);
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.authorName {
+  font-size: 0.95rem;
+  font-weight: 850;
+  color: var(--ink);
+}
+
+.authorRole {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* АНІМАЦІЯ НЕПЕРЕРВНОГО СКРОЛУ */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
   }
 
+  100% {
+    /* Зсуваємо рівно на половину ширини треку (оскільки ми подвоїли масив) */
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+}
+
+/* Налаштування під мобільні екрани */
+@media (max-width: 600px) {
   .card {
-    min-height: 0;
+    width: 290px;
+    /* Робимо картки трохи вужчими на мобілках */
+    padding: 1.5rem;
+    min-height: 220px;
+  }
+
+  .reviewText {
+    font-size: 0.95rem;
+  }
+
+  .marqueeContainer {
+    /* Послаблюємо маску по боках, щоб на маленьких мобілках було більше читабельного місця */
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
   }
 }

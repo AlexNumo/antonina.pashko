@@ -7,7 +7,7 @@ const items = [
   },
   {
     title: '7 аудіо-практик',
-    text: 'Медитації, тілесні практики і внутрішні діалоги на 10-15 хвилин, щоб зміни відчувались не тільки головою.',
+    text: 'Медитації, тілесні практики і внутрішні діалоги на 10-15 хвилин, щоб зміни відчувалися не лише головою.',
   },
   {
     title: 'Робочий зошит',
@@ -21,13 +21,13 @@ export default function Includes() {
       <div className={styles.container}>
         <div className={styles.header}>
           <span className="section-label">Що всередині</span>
-          <h2>Три шари роботи щодня</h2>
+          <h2>План роботи на кожен день</h2>
         </div>
 
         <div className={styles.grid}>
           {items.map((item, index) => (
             <article className={styles.card} key={item.title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{String(index + 1).padStart(2, '')}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </article>
