@@ -1,33 +1,111 @@
 .footer {
+  width: 100%;
+  background: #0e0d0c;
+  /* Ультра-темний глибокий преміум фон */
+  border-top: 1px solid rgba(212, 163, 115, 0.12);
+  /* Тонка золотава лінія з :root */
+  padding: 3rem clamp(1rem, 5vw, 5rem);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 2rem clamp(1rem, 5vw, 5rem);
-  color: rgba(255, 255, 255, 0.72);
-  background: var(--graphite);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 2rem;
 }
 
-.footer span {
-  color: var(--white);
+/* БРЕНД (Ім'я + Інстаграм) */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer .brand span {
+  color: #ffffff;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-.footer a {
-  color: var(--rose);
-  font-weight: 850;
+.instagram {
+  color: var(--gold-light) !important;
+  /* Робимо лінк видимим та яскравим */
+  font-weight: 800;
+  font-size: 0.95rem;
   text-decoration: none;
+  transition: color 0.2s ease;
+  width: fit-content;
 }
 
-.footer small {
-  font-size: 0.86rem;
+.instagram:hover {
+  color: #ffffff !important;
 }
 
-@media (max-width: 680px) {
-  .footer {
-    align-items: flex-start;
+/* ЮРИДИЧНІ ПОСИЛАННЯ */
+.legal {
+  display: flex;
+  gap: 2rem;
+}
+
+.legal a {
+  color: var(--muted);
+  /* Стриманий шляхетний колір у спокійному стані */
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal a:hover {
+  color: var(--gold);
+  /* Підсвічування золотом при наведенні */
+}
+
+/* КОПІРАЙТ */
+.copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  color: var(--muted);
+}
+
+.copyright small {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.allRights {
+  font-size: 0.75rem !important;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* МАКСИМАЛЬНИЙ АДАПТИВ ДЛЯ МОБІЛОК */
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
+    align-items: flex-start;
+    /* Вирівнювання по лівому краю на смартфонах */
+    gap: 2.5rem;
+  }
+
+  .legal {
+    flex-direction: column;
+    /* Документи стають один під одним */
+    gap: 1rem;
+  }
+
+  .copyright {
+    align-items: flex-start;
+    /* Копірайт перетікає ліворуч */
+    border-top: 1px solid rgba(212, 163, 115, 0.08);
+    width: 100%;
+    padding-top: 1.5rem;
   }
 }

@@ -1,0 +1,158 @@
+.siteNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem clamp(1rem, 5vw, 5rem);
+  /* Трохи компактніший відступ зверху */
+  z-index: 1000;
+  background: rgba(18, 17, 16, 0.85);
+  /* Щільніше скло для кращого контрасту лого */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(212, 163, 115, 0.08);
+}
+
+/* ЛОГОТИП ТА МОНОГРАМА */
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* === ГЕНЕРОВАНИЙ ЛОГОТИП (CSS ART) === */
+.logoMonogram {
+  width: 42px;
+  /* Трохи більший для чіткості монограми */
+  height: 42px;
+  border-radius: 50%;
+  position: relative;
+  background: #0e0d0c;
+  /* Чорний оксамит підкладки */
+  border: 1px solid rgba(212, 163, 115, 0.6);
+  /* Золотий контур */
+  box-shadow: 0 0 15px rgba(212, 163, 115, 0.2);
+  /* М'яке неонове сяйво */
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Створення літер А та П за допомогою ліній (Luxury Minimalism) */
+.logoMonogram::before,
+.logoMonogram::after {
+  content: '';
+  position: absolute;
+  background: var(--gold-gradient);
+  /* Монограма з рідкого золота */
+  transition: all 0.3s ease;
+}
+
+/* Вертикальні стійки для А та П */
+.logoMonogram::before {
+  top: 25%;
+  bottom: 25%;
+  left: 35%;
+  width: 2px;
+  box-shadow: 2px 0 0 var(--gold), 8px 0 0 var(--gold);
+  /* Додаткові лінії для П */
+  border-radius: 2px;
+}
+
+/* Горизонтальні перекладини (дах А та перемичка П) */
+.logoMonogram::after {
+  top: 25%;
+  left: 35%;
+  right: 35%;
+  height: 2px;
+  box-shadow: 0 10px 0 var(--gold);
+  /* Нижня перекладина для А */
+  border-radius: 2px;
+}
+
+/* Інтерактив при наведенні */
+.navLogo:hover .logoMonogram {
+  transform: scale(1.05);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(212, 163, 115, 0.4);
+  /* Посилення сяйва */
+}
+
+.logoText {
+  color: #ffffff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ПОСИЛАННЯ НАВІГАЦІЇ */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a:not(.navCta) {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:not(.navCta):hover {
+  color: var(--gold-light);
+}
+
+/* КНОПКА ЗАПИСАТИСЯ (CTA) */
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999px;
+  background: var(--gold-gradient);
+  color: #0e0d0c !important;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(212, 163, 115, 0.2);
+}
+
+.navCta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4);
+}
+
+/* АДАПТИВ */
+@media (max-width: 640px) {
+  .siteNav {
+    padding: 1rem;
+  }
+
+  .navLinks li:not(:last-child) {
+    display: none;
+  }
+
+  .logoMonogram {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logoText {
+    font-size: 1.1rem;
+  }
+}

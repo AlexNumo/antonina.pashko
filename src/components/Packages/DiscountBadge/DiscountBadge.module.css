@@ -1,81 +1,129 @@
-.badge {
+.badgeWrapper {
   position: absolute;
-  /* Робимо його більшим та помітнішим */
-  top: 0px;
-  right: 16px;
-
-  /* Ідеальний круг */
-  width: 64px;
-  height: 64px;
+  top: -15px;
+  right: 15px;
+  width: 75px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-
-  /* Насичений, дорогий колір */
-  background: var(--ink);
-  color: var(--white);
-
-  /* Типографіка: жирна, чітка */
-  font-weight: 900;
-  font-size: 1.1rem;
-  /* Збільшений шрифт */
-  font-family: inherit;
-  letter-spacing: -0.01em;
-  /* Легке звуження для стилю */
-  text-align: center;
-
-  /* Чіткий контур, щоб виділити на будь-якому фоні */
-  border: 2=1px solid var(--white);
-
-  /* --- ЕФЕКТ ПРЕМІАЛЬНОСТІ --- */
-
-  /* Складний градієнт для ефекту "об'ємної наклейки" */
-  background-image: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
-
-  /* Потужна об'ємна тінь */
-  box-shadow:
-    0 8px 14px rgba(184, 65, 47, 0.4),
-    /* Тінь кольору теракоти */
-    inset 0 2px 5px rgba(255, 255, 255, 0.25);
-  /* Внутрішнє світло */
-
-  /* Початковий нахил */
-  transform: rotate(5deg) scale(1.05);
-
-  /* Притискаємо поверх усього */
   z-index: 100;
-
-  /* ПОСИЛЕНА АНІМАЦІЯ: пульсація та м'яке сяйво */
-  animation: pulsePremium 2.5s infinite ease-in-out;
 }
 
-/* Старий варіант "сердечка" більше не потрібен, але ми переробимо його
-   на "акцентний" варіант (наприклад, для темних карток) */
-.heartVariant {
-  background: var(--rose);
-  color: var(--terracotta);
-  border-color: var(--terracotta);
-  box-shadow: 0 8px 24px rgba(226, 196, 196, 0.5);
-  /* Ніжніша тінь */
+/* Розмитий задній фон (Ефект рідкого золотого неону) */
+.neonGlow {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  filter: blur(15px);
+  pointer-events: none;
 }
 
-/* ПОСИЛЕНА АНІМАЦІЯ: додаємо м'яке свічення по контуру */
-@keyframes pulsePremium {
+/* САМА ПЕЧАТКА ДИСКАУНТУ (Очищена від білих спалахів) */
+.badge {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--gold-gradient);
+  color: #0e0d0c;
+  /* Контрастний темний текст */
+
+  font-weight: 900;
+  font-size: 1.2rem;
+  font-family: inherit;
+  letter-spacing: -0.02em;
+
+  /* ЗАМІНА: Прибрали білу рамку на користь тонкої золотавої, щоб бейдж не різав око */
+  border: 1.5px solid rgba(212, 163, 115, 0.4);
+
+  /* ВИПРАВЛЕНО: Прибрали внутрішній білий box-shadow, залишили тільки об'ємне золоте сяйво */
+  box-shadow: 0 10px 30px rgba(212, 163, 115, 0.5);
+
+  cursor: pointer;
+  overflow: hidden;
+  transform: rotate(5deg);
+  pointer-events: auto;
+
+  /* ДОДАНО: Потужна CSS-анімація пульсації тіні */
+  animation: goldPulse 2.2s infinite ease-in-out;
+}
+
+/* ЕФЕКТ БЛИСКАВКИ (Анімація преміального відблиску) */
+.shimmerEffect {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      /* Зменшили яскравість спалаху для м'якості */
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: shimmerAnim 3.5s infinite linear;
+}
+
+/* АНІМАЦІЯ ПУЛЬСАЦІЇ СЯЙВА */
+@keyframes goldPulse {
   0% {
-    transform: rotate(5deg) scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(184, 65, 47, 0.1));
+    box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
   }
 
   50% {
-    transform: rotate(5deg) scale(1.12);
-    /* Більший масштаб */
-    /* М'яке "світлове коло" навколо бейджа */
-    filter: drop-shadow(0 0 12px rgba(184, 65, 47, 0.6));
+    box-shadow: 0 12px 40px rgba(212, 163, 115, 0.7);
+    /* Максимальний розлив золотого світла */
   }
 
   100% {
-    transform: rotate(5deg) scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(184, 65, 47, 0.1));
+    box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+  }
+}
+
+@keyframes shimmerAnim {
+  0% {
+    left: -150%;
+  }
+
+  30% {
+    left: 150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+.badge .text {
+  position: relative;
+  z-index: 2;
+  /* Прибрали білу підкладку під текстом, щоб він був чистим */
+  text-shadow: none;
+}
+
+.accentVariant {
+  background: var(--paper);
+  color: var(--gold-light);
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(212, 163, 115, 0.2);
+  animation: goldPulseAccent 2.2s infinite ease-in-out;
+}
+
+@keyframes goldPulseAccent {
+  0% {
+    border-color: rgba(212, 163, 115, 0.4);
+  }
+
+  50% {
+    border-color: rgba(212, 163, 115, 0.9);
+  }
+
+  100% {
+    border-color: rgba(212, 163, 115, 0.4);
   }
 }

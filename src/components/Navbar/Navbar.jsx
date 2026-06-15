@@ -1,21 +1,27 @@
-import Logo from '../../assets/antonina-room.jpg'
+import styles from './Navbar.module.css';
 
 export default function Navbar() {
   return (
-    <nav className="site-nav" aria-label="Головна навігація">
-      <a href="#" className="nav-logo" aria-label="Антоніна Пашко - на початок">
-        {/* Замість <img> використовуємо <div> з фоном */}
+    <nav className={styles.siteNav} aria-label="Головна навігація">
+      <a href="#" className={styles.navLogo} aria-label="Антоніна Пашко — на початок">
+        {/* НОВИЙ ГЕНЕРОВАНИЙ ЛОГОТИП-МОНОГРАМА (через CSS) */}
         <div 
-          className="logo-image-bg" 
-          style={{ backgroundImage: `url(${Logo})` }}
+          className={styles.logoMonogram} 
           aria-hidden="true"
-        ></div>
-        Антоніна Пашко
+        >
+          {/* Усередині CSS ми створимо літери АП */}
+        </div>
+        <span className={styles.logoText}>Антоніна Пашко</span>
       </a>
-      <ul className="nav-links">
+      
+      <ul className={styles.navLinks}>
         <li><a href="#program">Програма</a></li>
         <li><a href="#about">Спікер</a></li>
-        <li><a href="#packages" className="nav-cta">Записатися</a></li>
+        <li>
+          <a href="#packages" className={styles.navCta}>
+            Записатися
+          </a>
+        </li>
       </ul>
     </nav>
   );

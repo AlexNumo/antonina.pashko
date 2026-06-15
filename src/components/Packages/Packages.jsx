@@ -1,8 +1,10 @@
 import styles from './Packages.module.css';
 import DiscountBadge from './DiscountBadge/DiscountBadge';
 import { COURSE_CONFIG } from '../../config/courseConfig';
-import BackgroundBTN from '../../assets/videos/background_btn.mp4';
-import BackgroundCard from '../../assets/videos/Background_Card.mp4';
+// import BackgroundBTN from '../../assets/videos/background_btn.mp4';
+// import BackgroundCard from '../../assets/videos/Background_Card.mp4';
+import BackgroundBTN from '../../assets/videos/background_btn_optimized.mp4';
+import BackgroundCard from '../../assets/videos/Background_Card_optimized.mp4';
 
 export default function Packages({ onSelectPackage }) {
   const visiblePackages = Object.values(COURSE_CONFIG.packages).filter((pkg) => !pkg.hidden);
@@ -20,21 +22,25 @@ export default function Packages({ onSelectPackage }) {
             const hasPlacesLimit = pkg.availablePlaces !== undefined;
             const isSoldOut = hasPlacesLimit && pkg.availablePlaces <= 0;
             
-            // Чітке розділення категорій для гнучкого стилювання
-            const isVip = pkg.name.toLowerCase().includes('віп');
-            const isStandardFlame = pkg.name.toLowerCase().includes('супровід') && !isVip;
-            const hasVideo = isStandardFlame || isVip; // Обидва преміум-тарифи мають відеофон
+            // Чітка та надійна фільтрація за системним ID з конфігу
+            const isBase = pkg.id === 'base';
+            const isSupport = pkg.id === 'support';
+            const isVip = pkg.id === 'vip';
+            
+            // Відеофон додаємо тільки на преміум-пакети
+            const hasVideo = isSupport || isVip; 
 
             return (
               <article 
                 className={`
                   ${styles.card} 
-                  ${pkg.featured ? styles.featured : ''} 
-                  ${isSoldOut ? styles.soldOutCard : ''} 
-                  ${isStandardFlame ? styles.flameCard : ''} 
+                  ${isBase ? styles.baseCard : ''}
+                  ${isSupport ? styles.flameCard : ''} 
                   ${isVip ? styles.vipCard : ''}
+                  ${pkg.featured ? styles.featured : ''} 
+                  ${isSoldOut ? styles.soldOutCard : ''}
                 `} 
-                key={pkg.name}
+                key={pkg.id || pkg.name}
               >
                 {hasVideo && (
                   <video 
@@ -48,7 +54,12 @@ export default function Packages({ onSelectPackage }) {
                 )}
 
                 <div className={styles.cardContent}>
-                  <DiscountBadge oldPrice={pkg.oldPrice} newPrice={pkg.price} />
+                  {/* VIP отримує інверсійний неон-варіант бейджа для різноманітності */}
+                  <DiscountBadge 
+                    oldPrice={pkg.oldPrice} 
+                    newPrice={pkg.price} 
+                    variant={isVip ? 'accent' : 'circle'} 
+                  />
                   
                   <span className={styles.tag}>{pkg.tag}</span>
                   <h3>{pkg.name}</h3>

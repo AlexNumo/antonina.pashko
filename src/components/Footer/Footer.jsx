@@ -3,9 +3,33 @@ import styles from './Footer.module.css';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <span>Антоніна Пашко</span>
-      <a href="https://instagram.com/tonypashko">@tonypashko</a>
-      <small>© 2026 · Точка переходу</small>
+      <div className={styles.container}>
+        
+        {/* ЛІВА ЧАСТИНА: Автор курсу */}
+        <div className={styles.brand}>
+          <span>Антоніна Пашко</span>
+          <a href="https://instagram.com/tonypashko" target="_blank" rel="noreferrer" className={styles.instagram}>
+            @tonypashko
+          </a>
+        </div>
+
+        {/* ЦЕНТРАЛЬНА ЧАСТИНА: Юридичні документи */}
+        <div className={styles.legal}>
+          <a href="/privacy.html" target="_blank" rel="noreferrer">
+            Політика конфіденційності
+          </a>
+          <a href="/terms.html" target="_blank" rel="noreferrer">
+            Публічна оферта
+          </a>
+        </div>
+
+        {/* ПРАВА ЧАСТИНА: Копірайт */}
+        <div className={styles.copyright}>
+          <small>© 2026 · Точка переходу</small>
+          <small className={styles.allRights}>Усі права захищено</small>
+        </div>
+
+      </div>
     </footer>
   );
 }

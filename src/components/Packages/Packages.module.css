@@ -8,50 +8,176 @@
   margin: 0 auto;
 }
 
-.header {
-  max-width: 820px;
-}
-
 .header h2 {
   margin-top: 1rem;
+  color: #fff5ea;
+  /* М'яке біле світло для заголовків */
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Робимо 3 колонки для трьох тарифів */
   gap: 2rem;
   margin-top: 4rem;
   align-items: stretch;
 }
 
+/* ЗАГАЛЬНА БАЗА ДЛЯ КАРТОК */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   padding: clamp(1.8rem, 4vw, 2.5rem);
-  border: 1px solid rgba(184, 65, 47, 0.15);
   border-radius: 32px;
-  background: #FFF9F6;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   overflow: hidden;
   isolation: isolate;
 }
 
-.featured {
-  background: #FFFDFB;
-  border: 1px solid rgba(184, 65, 47, 0.25);
-  color: #2D2B2A;
-  transform: scale(1.02);
-  z-index: 2;
-  box-shadow: inset 0 0 40px rgba(255, 240, 232, 0.6), 0 25px 60px rgba(184, 65, 47, 0.07);
+/* 1. БАЗОВИЙ ТАРИФ: Стриманий мінімалізм */
+.baseCard {
+  background: #1a1816;
+  /* Глибокий графіт */
+  border: 1px solid rgba(212, 163, 115, 0.15);
+  /* Дуже тонка золота лінія */
+  color: #e9dccf;
 }
 
+.baseCard .tag {
+  color: var(--gold-light);
+  background: rgba(212, 163, 115, 0.1);
+}
+
+.baseCard h3 {
+  color: #ffffff;
+}
+
+.baseCard p {
+  color: var(--muted);
+}
+
+.baseCard .price strong {
+  color: var(--gold-light);
+}
+
+.baseCard .price span {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.baseCard .price small {
+  color: var(--muted);
+}
+
+.baseCard li::before {
+  color: var(--gold);
+}
+
+.baseCard li {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* 2. ТАРИФ СУПРОВІД (FEATURED): Головний магніт сторінки */
 .flameCard {
-  background: #000000;
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+  background: #241f1c;
+  border: 1px solid var(--gold);
+  color: #ffffff;
+  transform: scale(1.03);
+  /* Візуально домінує */
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(212, 163, 115, 0.15),
+    inset 0 0 30px rgba(212, 163, 115, 0.05);
 }
 
+.flameCard .tag {
+  color: #121110;
+  background: var(--gold-gradient);
+}
+
+.flameCard h3 {
+  color: var(--gold-light);
+  text-shadow: 0 2px 10px rgba(231, 198, 165, 0.2);
+}
+
+.flameCard p {
+  color: #e9dccf;
+}
+
+.flameCard .price {
+  border-color: rgba(212, 163, 115, 0.25);
+}
+
+.flameCard .price strong {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.flameCard .price span {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.flameCard .price small {
+  color: var(--gold-light);
+}
+
+.flameCard li::before {
+  color: var(--gold);
+}
+
+.flameCard li {
+  color: #ffffff;
+}
+
+/* 3. VIP ТАРИФ: Абсолютний преміум оксамит */
+.vipCard {
+  background: #0b0a0a;
+  /* Ультра-темна ніч */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
+}
+
+.vipCard .tag {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vipCard h3 {
+  background: linear-gradient(180deg, #ffffff 0%, #a6a6a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vipCard p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.vipCard .price {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.vipCard .price strong {
+  color: var(--gold-light);
+}
+
+.vipCard .price span {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.vipCard .price small {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.vipCard li::before {
+  color: #ffffff;
+}
+
+.vipCard li {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ДЕТАЛІ ОФОРМЛЕННЯ КАРТОК */
 .cardVideoBackground {
   position: absolute;
   top: 50%;
@@ -62,7 +188,8 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
-  opacity: 0.62;
+  opacity: 0.18;
+  /* Зменшили, щоб відео було благородною текстурою, а не заважало читати */
 }
 
 .cardContent {
@@ -74,42 +201,21 @@
   flex: 1;
 }
 
+.cardContent h3{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-weight: 600;
+  font-size: 36px;
+}
+
 .tag {
   width: fit-content;
   border-radius: 999px;
   padding: 0.45rem 0.85rem;
-  color: #B8412F;
-  background: #FCEAE4;
   font-size: 0.75rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.flameCard .tag {
-  color: #000000;
-  background: #FFFFFF;
-}
-
-.card h3 {
-  margin-top: 1.4rem;
-  font-size: 1.75rem;
-  color: var(--ink);
-}
-
-.flameCard h3 {
-  color: #FFFFFF;
-}
-
-.card p {
-  margin-top: 0.75rem;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.flameCard p {
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .price {
@@ -119,46 +225,26 @@
   gap: 0.75rem;
   margin: 1.8rem 0;
   padding: 1.1rem 0;
-  border-top: 1px solid rgba(184, 65, 47, 0.12);
-  border-bottom: 1px solid rgba(184, 65, 47, 0.12);
-}
-
-.flameCard .price {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(212, 163, 115, 0.12);
+  border-bottom: 1px solid rgba(212, 163, 115, 0.12);
 }
 
 .price strong {
-  color: #B8412F;
   font-size: 3rem;
   line-height: 1;
   font-weight: 900;
 }
 
-.flameCard .price strong {
-  color: #FF9E7A;
-  /* Яскравий вогняний акцент */
-}
-
 .price span {
-  color: var(--muted);
   font-size: 1.2rem;
   text-decoration: line-through;
 }
 
-.flameCard .price span {
-  color: rgba(255, 255, 255, 0.4);
-}
-
 .price small {
-  color: #913020;
   font-weight: 850;
   text-transform: uppercase;
   font-size: 0.72rem;
   letter-spacing: 0.05em;
-}
-
-.flameCard .price small {
-  color: rgba(255, 255, 255, 0.6);
 }
 
 .card ul {
@@ -173,40 +259,18 @@
 .card li {
   position: relative;
   padding-left: 1.6rem;
-  color: #4A4543;
   font-size: 1rem;
   line-height: 1.45;
-}
-
-.flameCard li {
-  color: rgba(255, 255, 255, 0.85);
 }
 
 .card li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #B8412F;
   font-weight: 900;
 }
 
-.flameCard li::before {
-  color: #FF9E7A;
-}
-
-.note {
-  max-width: 760px;
-  margin: 3rem auto 0;
-  color: var(--muted);
-  text-align: center;
-}
-
-.note a {
-  color: #B8412F;
-  font-weight: 900;
-  text-decoration: none;
-}
-
+/* ЛІМІТИ МІСЦЬ */
 .placesBadge {
   margin-bottom: 1.5rem;
   padding: 0.6rem 1rem;
@@ -216,57 +280,30 @@
 }
 
 .placesLeft {
-  background: #FCEAE4;
-  color: #913020;
-  border: 1px solid rgba(184, 65, 47, 0.2);
+  background: rgba(212, 163, 115, 0.1);
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 163, 115, 0.2);
 }
 
 .placesLeft strong {
-  color: #B8412F;
+  color: #ffffff;
   font-weight: 900;
 }
 
-.flameCard .placesLeft {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.flameCard .placesLeft strong {
-  color: #FF9E7A;
-}
-
 .placesOut {
-  background: #F2E8E8;
-  color: #A65959;
-  border: 1px solid #E2C4C4;
+  background: #241f1c;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .soldOutCard {
-  opacity: 0.65;
+  opacity: 0.55;
 }
 
-.btnDisabled {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  border-radius: 999px;
-  background: #EAEAEA;
-  color: #999999;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-  border: 1px solid #DCDCDC;
-  cursor: not-allowed;
-  user-select: none;
-  width: 100%;
-}
-
+/* КНОПКИ */
 .videoBtn {
   position: relative;
   width: 100%;
@@ -279,16 +316,23 @@
   align-items: center;
   justify-content: center;
   isolation: isolate;
-  background: #FFF0E8;
-  transition: transform 0.2s ease;
+  background: var(--gold-gradient);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .videoBtn:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
+  box-shadow: 0 5px 20px rgba(212, 163, 115, 0.4);
 }
 
-.videoBtn:active {
-  transform: scale(0.99);
+.videoBtnText {
+  position: relative;
+  z-index: 2;
+  color: #0e0d0c;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
 }
 
 .btnVideoBackground {
@@ -301,99 +345,65 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
-  opacity: 0.45;
-}
-
-.videoBtnText {
-  position: relative;
-  z-index: 2;
-  color: #000000;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
+  opacity: 0.25;
 }
 
 .standardBtn {
   width: 100%;
   min-height: 54px;
   border-radius: 999px;
+  background: #1a1816;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.btnText {
-  color: inherit;
+.standardBtn:hover {
+  background: var(--gold-gradient);
+  color: #121110;
 }
 
-.vipCard {
-  background: #1F1A17;
-  /* Дорогий глибокий графіт замість агресивного чорного */
-  border-color: rgba(184, 65, 47, 0.3);
-  box-shadow: 0 25px 60px rgba(31, 26, 23, 0.25);
+.btnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  background: #1a1816;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: not-allowed;
 }
 
-.vipCard .tag {
-  color: #B8412F;
-  background: #FFF0E8;
-  /* Залишаємо фірмовий світлий тег для контрасту */
+.note {
+  max-width: 760px;
+  margin: 3rem auto 0;
+  color: var(--muted);
+  text-align: center;
 }
 
-.vipCard h3 {
-  color: #FFFFFF;
+.note a {
+  color: var(--gold);
+  font-weight: 900;
+  text-decoration: none;
 }
 
-.vipCard p {
-  color: rgba(255, 255, 255, 0.65);
-  /* Стриманий білий текст */
-}
-
-.vipCard .price {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.vipCard .price strong {
-  color: #F3D9D1;
-  /* Благородне світло-рожеве золото для ціни */
-}
-
-.vipCard .price span {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.vipCard .price small {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.vipCard li {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.vipCard li::before {
-  color: #F3D9D1;
-  /* Галочки в тон ціни */
-}
-
-.vipCard .placesLeft {
-  background: rgba(184, 65, 47, 0.15);
-  color: #FFF0E8;
-  border-color: rgba(184, 65, 47, 0.25);
-}
-
-.vipCard .placesLeft strong {
-  color: #FFFFFF;
-}
-
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 
-  .featured {
+  .flameCard {
     transform: none;
   }
 }

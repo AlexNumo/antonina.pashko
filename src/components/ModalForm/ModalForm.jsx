@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './ModalForm.module.css';
 import { COURSE_CONFIG } from '../../config/courseConfig';
 
@@ -7,50 +7,70 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({ name: '', contact: '', message: '' });
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  
-  // Стейт для відображення помилки валідації чекбокса
   const [showTermsError, setShowTermsError] = useState(false);
 
-  useEffect(() => {
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape' && isOpen) {
-      handleCloseWithReset();
-    }
-  };
-
-  if (isOpen) {
-    // Обчислюємо реальну ширину скролбару користувача
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-    // Додаємо компенсацію відступу, щоб сайт не смикався
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
-  }
-
-  return () => {
-    document.removeEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = '';
-    // Повертаємо як було
-    document.body.style.paddingRight = '';
-  };
-  }, [isOpen]);
-
+  // Реф для автоматичного фокусу на перше поле
+  const nameInputRef = useRef(null);
+  
   const handleCloseWithReset = () => {
     onClose();
     setTimeout(() => {
       setSent(false);
       setLoading(false);
       setAcceptedTerms(false);
-      setShowTermsError(false); // Скидаємо помилку
+      setShowTermsError(false);
       setFormValues({ name: '', contact: '', message: '' });
     }, 300);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        handleCloseWithReset();
+      }
+    };
+
+    if (isOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+      // Робимо мікро-таймаут, щоб фокус спрацював після того, як відпрацює CSS-анімація появи модалки
+      setTimeout(() => {
+        nameInputRef.current?.focus();
+      }, 100);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isOpen]);
+
+  // Функція для красивого форматування контактів (прибирання лінків та знаків @)
+  const cleanContactInput = (input) => {
+    let clean = input.trim();
+    
+    // Якщо це email — повертаємо як є, тільки в нижньому регістрі
+    if (clean.includes('@') && clean.includes('.')) {
+      return clean.toLowerCase();
+    }
+    
+    // Якщо користувач вставив повне посилання на соцмережі, витягуємо тільки нік
+    clean = clean.replace(/^(https?:\/\/)?(www\.)?(instagram\.com|instagr\.am|t\.me)\//i, '');
+    
+    // Видаляємо знак @ з початку нікнейму для однорідності бази
+    clean = clean.replace(/^@/, '');
+    
+    return clean;
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     
-    // Перевірка чекбокса: якщо не відмічено, показуємо помилку та зупиняємо відправку
     if (!acceptedTerms) {
       setShowTermsError(true);
       return;
@@ -59,8 +79,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
     setShowTermsError(false);
     setLoading(true);
 
-    const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
     const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
     
     const matchedPackage = Object.values(COURSE_CONFIG.packages).find(
@@ -73,62 +91,42 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
     const formattedTime = now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
     const fullDateTime = `${formattedDate} ${formattedTime}`;
 
-    if (GOOGLE_SCRIPT_URL) {
-      const googleSheetData = {
-        dateTime: fullDateTime,
-        packageName: selectedPackage || 'Зворотній звʼязок (загальний)',
-        price: currentPrice,
-        name: formValues.name,
-        contact: formValues.contact,
-        message: formValues.message
-      };
-      try {
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(googleSheetData),
-        });
-      } catch (err) {
-        console.error('Помилка Google Таблиць:', err);
-      }
+    // Очищаємо та валідуємо фінальні дані перед відправкою
+    const finalData = {
+      dateTime: fullDateTime,
+      packageName: selectedPackage || 'Зворотній звʼязок (загальний)',
+      price: currentPrice,
+      name: formValues.name.trim(),
+      contact: cleanContactInput(formValues.contact),
+      message: formValues.message.trim()
+    };
+
+    // Додаткова міні-перевірка: якщо після очищення поля виявилися порожніми
+    if (!finalData.name || !finalData.contact) {
+      alert('Будь ласка, заповніть поля коректно.');
+      setLoading(false);
+      return;
     }
 
-    const telegramMessage = `
-🔔 *Нова заявка із сайту!*
-----------------------------------
-📌 *Параметри замовлення:*
-• *Курс:* ${COURSE_CONFIG.title}
-• *Дата:* ${formattedDate}
-• *Час:* ${formattedTime}
-• *Обраний тариф:* ${selectedPackage || 'Зворотній звʼязок (загальний)'}
-• *Вартість:* ${currentPrice}
-
-👤 *Дані клієнта:*
-• *Ім'я:* ${formValues.name}
-• *Контакт для зв'язку:* ${formValues.contact}
-
-💬 *Запит користувача:*
-"${formValues.message}"
-----------------------------------
-    `.trim();
-
     try {
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: telegramMessage, parse_mode: 'Markdown' }),
+        mode: 'cors',
+        headers: { 'Content-Type': 'text/plain' }, 
+        body: JSON.stringify(finalData),
       });
 
       if (response.ok) {
         setSent(true);
+        setLoading(false);
         setTimeout(() => { handleCloseWithReset(); }, 4000);
       } else {
-        alert('Помилка відправки. Спробуйте ще раз.');
-        setLoading(false);
+        throw new Error('Сервер повернув помилку');
       }
+
     } catch (error) {
-      console.error(error);
+      console.error('Помилка відправки форми:', error);
+      alert('Помилка з\'єднання. Спробуйте ще раз.');
       setLoading(false);
     }
   };
@@ -140,7 +138,11 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
 
         {sent ? (
           <div className={styles.successState}>
-            <div className={styles.successIcon}>✓</div>
+            <div className={styles.successIcon}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <h3>Запит успішно надіслано!</h3>
             <p>Антоніна вже отримала твої дані у Telegram і зв'яжеться з тобою найближчим часом.</p>
           </div>
@@ -153,20 +155,44 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
 
             <label className={styles.fieldLabel}>
               Ім'я
-              <input type="text" placeholder="Як до тебе звертатись" value={formValues.name} onChange={(e) => setFormValues({...formValues, name: e.target.value})} required disabled={loading} />
+              <input 
+                ref={nameInputRef}
+                type="text" 
+                placeholder="Як до тебе звертатись" 
+                value={formValues.name} 
+                onChange={(e) => setFormValues({...formValues, name: e.target.value})} 
+                required 
+                disabled={loading} 
+                maxLength={60} // 👈 Звичайна людина не має імені довше 60 символів
+              />
             </label>
-            
+
             <label className={styles.fieldLabel}>
               Контакт для зв'язку
-              <input type="text" placeholder="Твій Instagram нік, Telegram або email" value={formValues.contact} onChange={(e) => setFormValues({...formValues, contact: e.target.value})} required disabled={loading} />
+              <input 
+                type="text" 
+                placeholder="Твій Instagram нік, Telegram або email" 
+                value={formValues.contact} 
+                onChange={(e) => setFormValues({...formValues, contact: e.target.value})} 
+                required 
+                disabled={loading} 
+                maxLength={100} // 👈 Для нікнейму чи пошти цього з головою
+              />
             </label>
-            
+
             <label className={styles.fieldLabel}>
               Що важливо передати Антоніні?
-              <textarea rows="4" placeholder="Коротко про твій запит або життєву ситуацію..." value={formValues.message} onChange={(e) => setFormValues({...formValues, message: e.target.value})} required disabled={loading} />
+              <textarea 
+                rows="4" 
+                placeholder="Коротко про твій запит або життєву ситуацію..." 
+                value={formValues.message} 
+                onChange={(e) => setFormValues({...formValues, message: e.target.value})} 
+                required 
+                disabled={loading} 
+                maxLength={800} // 👈 Оптимальний ліміт для опису ситуації (близько 2 абзаців)
+              />
             </label>
             
-            {/* Блок чекбокса */}
             <div className={styles.termsWrapper}>
               <div className={styles.termsCheckbox}>
                 <input 
@@ -184,7 +210,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
                 </label>
               </div>
               
-              {/* Візуальне повідомлення про помилку */}
               {showTermsError && (
                 <span className={styles.errorMessage}>
                   ⚠️ Будь ласка, ознайомтеся та підтвердьте згоду з умовами.

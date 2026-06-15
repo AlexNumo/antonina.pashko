@@ -26,18 +26,20 @@
 .card {
   padding: 1.6rem;
   border-radius: 22px;
-  background: var(--white);
+  background: var(--text-main);
   border: 1px solid var(--line);
   box-shadow: 0 16px 45px rgba(23, 20, 18, 0.05);
+  margin-bottom: 20px;
 }
 
 .card span {
-  color: var(--terracotta);
+  color: var(--paper);
   font-weight: 900;
 }
 
 .card h3 {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  color: var(--paper);
 }
 
 .card p {

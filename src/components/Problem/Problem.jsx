@@ -23,9 +23,8 @@ export default function Problem() {
       </div>
 
       <div className={styles.grid}>
-        {signs.map((sign, index) => (
+        {signs.map((sign) => (
           <article className={styles.sign} key={sign}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
             <p>{sign}</p>
           </article>
         ))}

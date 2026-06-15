@@ -5,7 +5,7 @@
   --white: #ffffff;
   --ink: #4b4646;
   /* М'який біло-кремовий колір тексту для ідеального контрасту */
-  --muted: #9e948e;
+  --muted: #706762;
   /* Шляхетний сіро-коричневий для другорядного тексту */
   --soft: #1c1a18;
   /* Світліший чорний для підкладок карт та блоків */
@@ -18,7 +18,7 @@
   --gold-light: #e7c6a5;
   --gold-dark: #b58255;
   --gold-gradient: linear-gradient(135deg, #e7c6a5 0%, #d4a373 50%, #b58255 100%);
-
+  --text-main: #e9dccf;
   /* Теракоту прибираємо, замінюємо на золото */
   --terracotta: var(--gold);
   --terracotta-dark: var(--gold-dark);
@@ -113,7 +113,7 @@ h3 {
   align-items: center;
   gap: 0.6rem;
   color: var(--gold);
-  font-size: 0.78rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;

@@ -1,7 +1,7 @@
 .testimonials {
-  padding: clamp(4rem, 8vw, 7rem) 0;
-  /* Прибираємо бокові паддінги з секції, щоб карусель йшла від краю до краю */
-  background: var(--white);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--paper);
+  /* Темний розкішний фон */
   overflow: hidden;
 }
 
@@ -18,111 +18,132 @@
 
 .header h2 {
   margin-top: 1rem;
+  color: #ffffff;
 }
 
-/* Контейнер маски для безкінечної стрічки */
+/* Контейнер маски */
 .marqueeContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
   padding: 1.5rem 0;
-
-  /* Ефектні м'які тіні-градієнти по краях екрана, щоб картки плавно з'являлися */
-  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
 }
 
-/* Доріжка, яка рухається вліво */
 .marqueeTrack {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
   width: max-content;
-  animation: scrollMarquee 35s linear infinite;
+  touch-action: pan-y;
 }
 
-/* Зупиняємо карусель при наведенні мишки */
 .marqueeContainer:hover .marqueeTrack {
   animation-play-state: paused;
 }
 
-/* Новий ніжний преміальний стиль картки відгуку */
+/* Картка адаптована під Luxury Dark */
 .card {
   width: 380px;
-  /* Фіксована ширина картки у стрічці */
-  min-height: 250px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
-  border-radius: 28px;
-  background: var(--paper);
-  /* Ніжний кремовий/паперовий фон */
-  border: 1px solid var(--line);
-  box-shadow: 0 4px 20px rgba(45, 43, 42, 0.02);
+  padding: 2.2rem;
+  border-radius: 24px;
+  background: rgba(28, 26, 24, 0.5);
+  /* Матовий --soft */
+  border: 1px solid rgba(212, 163, 115, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: grab;
+  user-select: none;
 }
 
-/* Ефект підсвічування окремої картки при наведенні */
+.card:active {
+  cursor: grabbing;
+  /* Курсор стискається в кулак під час тримання */
+}
+
 .card:hover {
   transform: translateY(-6px);
-  background: var(--white);
-  border-color: var(--terracotta);
-  box-shadow: 0 15px 35px rgba(184, 65, 47, 0.06);
+  background: rgba(28, 26, 24, 0.85);
+  border-color: var(--gold);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Верхня плашка верифікації */
 .cardHeader {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 1rem;
+  gap: 8px;
+  margin-bottom: 1.2rem;
 }
 
 .verifiedIcon {
-  color: var(--terracotta);
+  color: var(--gold);
   display: flex;
   align-items: center;
 }
 
 .verifiedLabel {
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.7rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
-/* Текст відгуку */
+/* Розумне обрізання тексту до 4 рядків */
 .reviewText {
-  font-size: 1.02rem;
-  line-height: 1.55;
-  color: var(--ink);
-  margin: 0 0 2rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin: 0 0 1rem 0;
   font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  /* Обмежуємо строго чотирма строками */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Інформація про жінку (Аватар + Підпис) */
+/* Делікатна підказка */
+.readMoreBtn {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+  margin-top: auto;
+  /* Притискає кнопку та інфо автора до низу */
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .readMoreBtn {
+  opacity: 1;
+}
+
 .authorInfo {
   display: flex;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid rgba(45, 43, 42, 0.06);
+  border-top: 1px solid rgba(212, 163, 115, 0.08);
   padding-top: 1.2rem;
 }
 
-/* Заглушка під аватарку з першою літерою імені */
 .avatarPlaceholder {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--rose);
-  color: var(--terracotta);
+  background: rgba(212, 163, 115, 0.1);
+  color: var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 1rem;
+  font-weight: 800;
+  font-size: 1.1rem;
   flex-shrink: 0;
+  border: 1px solid rgba(212, 163, 115, 0.15);
 }
 
 .authorMeta {
@@ -132,9 +153,9 @@
 }
 
 .authorName {
-  font-size: 0.95rem;
-  font-weight: 850;
-  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .authorRole {
@@ -142,34 +163,131 @@
   color: var(--muted);
 }
 
-/* АНІМАЦІЯ НЕПЕРЕРВНОГО СКРОЛУ */
+/* СТИЛІ ДЛЯ МОДАЛЬНОГО ВІКНА */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 9, 8, 0.75);
+  backdrop-filter: blur(12px);
+  /* Збільшив розмиття тла під стиль iOS */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.modalContent {
+  background: #161413;
+  border: 1px solid rgba(212, 163, 115, 0.18);
+  border-radius: 32px;
+  width: 100%;
+  max-width: 580px;
+  padding: 3rem;
+  position: relative;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8);
+  will-change: transform, width, height;
+  /* Оптимізація для плавності відеокарти */
+}
+
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.closeButton:hover {
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.8rem;
+}
+
+.modalReviewText {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #e9dccf;
+  margin: 0 0 2.5rem 0;
+}
+
+.modalAuthorInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid rgba(212, 163, 115, 0.12);
+  padding-top: 1.5rem;
+}
+
+.modalAuthorName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* АНІМАЦІЇ */
 @keyframes scrollMarquee {
   0% {
     transform: translateX(0);
   }
 
   100% {
-    /* Зсуваємо рівно на половину ширини треку (оскільки ми подвоїли масив) */
-    transform: translateX(calc(-50% - 0.75rem));
+    transform: translateX(calc(-50% - 0.875rem));
   }
 }
 
-/* Налаштування під мобільні екрани */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптація під мобільні */
 @media (max-width: 600px) {
   .card {
-    width: 290px;
-    /* Робимо картки трохи вужчими на мобілках */
-    padding: 1.5rem;
-    min-height: 220px;
+    width: 300px;
+    padding: 1.8rem;
+    min-height: 240px;
   }
 
-  .reviewText {
-    font-size: 0.95rem;
+  .modalContent {
+    padding: 2rem 1.5rem;
+    border-radius: 24px;
   }
 
-  .marqueeContainer {
-    /* Послаблюємо маску по боках, щоб на маленьких мобілках було більше читабельного місця */
-    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  .modalReviewText {
+    font-size: 1.1rem;
+    line-height: 1.5;
   }
 }

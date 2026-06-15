@@ -1,78 +1,135 @@
 .journey {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
-  color: var(--white);
-  background: var(--graphite);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  color: var(--text-main);
+  background: var(--paper);
+  /* Плавний перехід у загальний фон */
 }
 
 .container {
-  max-width: 1220px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 5rem);
 }
 
 .header {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
-  gap: 2rem;
-  align-items: end;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2.5rem;
 }
 
 .header h2 {
   margin-top: 1rem;
+  color: #ffffff;
 }
 
 .header p {
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 1.05rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
+/* Сітка з незалежними картками, що "дихають" */
 .timeline {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 3rem;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  gap: 1.5rem;
+  /* Відокремлюємо інформацію відчутним проміжком */
+  margin-top: 4rem;
 }
 
+/* Окрема картка дня програми */
 .day {
-  min-height: 270px;
-  padding: clamp(1.4rem, 3vw, 2.4rem);
-  background: var(--graphite);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+  padding: 2.5rem;
+  background: var(--soft);
+  /* М'яка темна підкладка */
+  border: 1px solid var(--line);
+  /* Тонка золотава межа замість білої сітки */
+  border-radius: 24px;
+  /* Округлі дорогі кути */
+  cursor: default;
+}
+
+.dayTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dayId {
-  color: var(--rose);
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
+/* Акуратний бейдж формату */
+.formatBadge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(212, 163, 115, 0.08);
+  border: 1px solid rgba(212, 163, 115, 0.15);
+  color: var(--gold-light);
+}
+
 .day h3 {
-  max-width: 520px;
-  margin-top: 1rem;
+  color: #ffffff;
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
 .day p {
-  max-width: 540px;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.72);
+  margin-top: 0.8rem;
+  color: var(--text-main);
+  opacity: 0.75;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  flex-grow: 1;
+  /* Рівномірно проштовхує мету до нижнього краю */
 }
 
-.day small {
-  display: block;
-  margin-top: 1.4rem;
-  color: var(--rose);
-  font-weight: 800;
+/* Нижня панель таймінгів */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
-@media (max-width: 860px) {
-  .header,
+.dot {
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+/* Адаптація під планшети та мобільні пристрої */
+@media (max-width: 960px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
   .timeline {
     grid-template-columns: 1fr;
+    /* Картки стають одна під одною */
+    gap: 1rem;
+    margin-top: 2.5rem;
   }
 
   .day {
-    min-height: 0;
+    min-height: auto;
+    padding: 2rem;
   }
 }

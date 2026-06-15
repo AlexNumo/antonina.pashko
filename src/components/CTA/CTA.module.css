@@ -7,9 +7,6 @@
     radial-gradient(circle at center, var(--terracotta), var(--graphite));
 }
 
-.cta :global(.section-label) {
-  color: var(--rose);
-}
 
 .cta h2 {
   max-width: 850px;

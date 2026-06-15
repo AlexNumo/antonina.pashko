@@ -6,7 +6,7 @@ const items = [
     text: 'Короткі пояснення на 15-20 хвилин: що відбувається, чому це не криза і який внутрішній механізм зараз керує вибором.',
   },
   {
-    title: '7 аудіо-практик',
+    title: '7 практик аудіо та PDF',
     text: 'Медитації, тілесні практики і внутрішні діалоги на 10-15 хвилин, щоб зміни відчувалися не лише головою.',
   },
   {
@@ -25,9 +25,9 @@ export default function Includes() {
         </div>
 
         <div className={styles.grid}>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <article className={styles.card} key={item.title}>
-              <span>{String(index + 1).padStart(2, '')}</span>
+              
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </article>

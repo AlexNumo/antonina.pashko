@@ -1,87 +1,153 @@
 .problem {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
-  background: var(--white);
+  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem);
+  background: var(--paper);
+  /* Інтегруємо в загальний темний стиль */
 }
 
 .header {
   max-width: 860px;
+  margin-bottom: 4rem;
 }
 
 .header h2 {
   margin-top: 1rem;
+  color: #ffffff;
 }
 
 .header p {
   max-width: 680px;
-  margin-top: 1rem;
-  color: var(--muted);
-  font-size: 1.08rem;
+  margin-top: 1.2rem;
+  color: var(--text-main);
+  opacity: 0.8;
+  font-size: 1.15rem;
+  line-height: 1.5;
 }
 
+/* Розумна преміум сітка: 4 в ряд на десктопі, автоматичний переніс */
 .grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-}
-
-.sign {
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  padding: 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--paper);
+  margin-top: 3rem;
 }
 
-.sign span {
-  color: var(--terracotta);
-  font-weight: 900;
+/* Перетворення картки на інтерактивний квадрат */
+.sign {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  /* Робить картку строго квадратною */
+  display: grid;
+  place-items: center;
+  /* Центрує контент по вертикалі та горизонталі */
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(28, 26, 24, 0.4);
+  /* Напівпрозорий --soft */
+  overflow: hidden;
+  cursor: default;
+  transition: background 0.4s ease;
+}
+
+.sign:hover {
+  background: rgba(28, 26, 24, 0.85);
+}
+
+/* Контейнер тексту, щоб тримати правильні відступи */
+.textContainer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 
 .sign p {
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 750;
-  line-height: 1.32;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0;
 }
 
+/* Фонова велика цифра під стиль рідкого золота */
+.bgNumber {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(212, 163, 115, 0.15) 0%, rgba(212, 163, 115, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Блок фінального інсайту */
 .insight {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 1rem;
-  max-width: 900px;
-  margin-top: 2rem;
-  padding: 1.35rem;
-  border-left: 4px solid var(--terracotta);
-  background: var(--soft);
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 4rem auto 0 auto;
+  padding: 2.2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(212, 163, 115, 0.15);
+  background: linear-gradient(135deg, rgba(28, 26, 24, 0.6) 0%, rgba(18, 17, 16, 0.9) 100%);
+  align-items: center;
+}
+
+.insightBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(212, 163, 115, 0.1);
+  border: 1px solid rgba(212, 163, 115, 0.2);
+  text-align: center;
 }
 
 .insight strong {
-  color: var(--terracotta-dark);
+  color: var(--gold-light);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
 }
 
 .insight p {
-  color: var(--terracotta);
-  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-@media (max-width: 720px) {
+/* Адаптація під мобільні екрани */
+@media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
-    overflow: visible;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
   }
 
   .sign {
-    min-height: 0;
+    aspect-ratio: auto;
+    /* На маленьких мобілках прибираємо жорсткий квадрат, щоб довгий текст не вилазив */
+    min-height: 180px;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .bgNumber {
+    font-size: 4rem;
+    top: 5px;
+    right: 15px;
   }
 
   .insight {
     grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.8rem;
+    text-align: center;
+  }
+
+  .insightBadge {
+    margin: 0 auto;
   }
 }

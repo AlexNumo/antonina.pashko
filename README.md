@@ -1,20 +1,43 @@
-# React + Vite
+# Точка переходу — Landing Page & CRM Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Сучасний, високопродуктивний Landing Page для 7-денного онлайн-практикуму Антоніни Пашко. Проект реалізовано на стеку **React + Vite** із фокусом на преміальний luxury-мінімалізм (Premium UX/UI), максимальну швидкість завантаження та безпечну безсерверну (Serverless) архітектуру.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Технологічний стек
 
-## React Compiler
+- **Фронтенд:** React 18+, Vite (швидке збирання та HMR)
+- **Стилізація:** CSS Modules (ізольовані стилі, гнучка адаптивність)
+- **Бекенд (Serverless):** Google Apps Script (обробка запитів, логування)
+- **База даних:** Google Sheets API (закритий контур)
+- **Сповіщення:** Telegram Bot API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🔒 Архітектура безпеки (Data Privacy)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+У проекті реалізовано архітектуру без прямого виклику сторонніх API з боку фронтенду, що повністю виключає витік чутливих даних:
 
-Відсотки здвинути
-Зробити захист і шифрування передачі персональних даних
-Прийняти рішення щодо домена, це довіра людей до сайту
+1.  **Захист токенів:** `TELEGRAM_BOT_TOKEN` та `CHAT_ID` повністю винесені з клієнтського коду та ізольовані всередині захищеної хмари Google Apps Script.
+2.  **Конфіденційність клієнтів:** Доступ до Google Таблиці з базою клієнтів закритий (`Restricted`). Фронтенд взаємодіє зі скриптом виключно в режимі "one-way append" (може лише додавати нові рядки), що унеможливлює зчитування бази зловмисниками.
+3.  **Валідація та Ваговий контроль:** На стороні Google Apps Script реалізовано жорстку валідацію вхідних даних та обмеження довжини рядків (`.substring`), що захищає систему від переповнення та спам-атак.
+4.  **Premium UX & Data Cleaning:** На фронтенді інтегровано автоматичне очищення контактів (стримінг пробілів, видалення лінків `https://t.me/` та знаків `@`), що гарантує збереження бази у чистому та однорідному вигляді.
+
+---
+
+## 📂 Структура проекту
+
+```text
+├── public/
+│   ├── privacy.html       # Політика конфіденційності (Luxury Dark Style)
+│   └── terms.html         # Публічна оферта ФОП (Luxury Dark Style)
+├── src/
+│   ├── components/
+│   │   └── ModalForm/     # Компонент модалки запису (з автофокусом та useRef)
+│   ├── config/
+│   │   └── courseConfig.js# Централізований конфіг пакетів, цін та лімітів місць
+│   ├── App.jsx
+│   └── main.jsx
+├── .env.example           # Приклад конфігурації оточення
+└── README.md
+```

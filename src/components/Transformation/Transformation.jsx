@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styles from './Transformation.module.css';
 
 const days = [
@@ -43,8 +44,10 @@ export default function Transformation() {
     <section className={styles.journey} id="program">
       <div className={styles.container}>
         <div className={styles.header}>
-          <span className="section-label">Програма</span>
-          <h2>7 днів, які повертають контакт із собою</h2>
+          <div>
+            <span className="section-label">Програма</span>
+            <h2>7 днів, які повертають контакт із собою</h2>
+          </div>
           <p>
             Кожен день має відео, аудіо-практику і запитання в робочому зошиті.
             Не для ривка. Для чесного внутрішнього зсуву.
@@ -53,12 +56,32 @@ export default function Transformation() {
 
         <div className={styles.timeline}>
           {days.map((day) => (
-            <article className={styles.day} key={day.id}>
-              <span className={styles.dayId}>День {day.id}</span>
+            <motion.article 
+              className={styles.day} 
+              key={day.id}
+              whileHover={{ 
+                y: -4, 
+                borderColor: 'rgba(212, 163, 115, 0.25)',
+                backgroundColor: 'rgba(28, 26, 24, 0.7)' 
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            >
+              <div className={styles.dayTop}>
+                <span className={styles.dayId}>День {day.id}</span>
+                <div className={styles.formatBadge}>Практика</div>
+              </div>
+              
               <h3>{day.title}</h3>
               <p>{day.result}</p>
-              <small>Відео 15-20 хв · аудіо 10-15 хв · зошит</small>
-            </article>
+              
+              <div className={styles.meta}>
+                <span>Відео 15-20 хв</span>
+                <span className={styles.dot}>·</span>
+                <span>Аудіо 10-15 хв</span>
+                <span className={styles.dot}>·</span>
+                <span>Зошит</span>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

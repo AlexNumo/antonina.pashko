@@ -28,7 +28,7 @@ export const COURSE_CONFIG = {
       oldPrice: '200€',
       featured: true,
       hidden: false,
-      availablePlaces: 3,
+      availablePlaces: 5,
       features: [
         'все з базового пакета',
         'Telegram-група з учасницями',
@@ -44,9 +44,9 @@ export const COURSE_CONFIG = {
       desc: 'Максимальна трансформація та особиста робота тет-а-тет з Антоніною.',
       price: '400€',
       oldPrice: '600€',
-      featured: false,
+      featured: true,
       hidden: false,
-      availablePlaces: 1,
+      availablePlaces: 2,
       features: [
         'все з пакета Супровід',
         '4 особисті сесії в Zoom',

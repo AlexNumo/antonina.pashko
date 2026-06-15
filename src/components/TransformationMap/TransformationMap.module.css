@@ -1,187 +1,180 @@
 .map {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
-  background: var(--white);
+  padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem);
+  background: var(--paper);
+  /* Завжди глибокий темний фон */
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 900px;
+  /* Робимо контент більш зібраним та журнальним */
   margin: 0 auto;
 }
 
 .header {
   max-width: 750px;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 
 .header h2 {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
+  color: #ffffff;
 }
 
-/* Десктопні заголовки стовпчиків */
-.tableHeaders {
-  display: grid;
-  grid-template-columns: 1fr 60px 1fr;
-  gap: 1.5rem;
-  padding: 0 1.5rem 1rem 1.5rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.columnTitle {
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.columnTitle:last-child {
-  color: var(--terracotta);
-}
-
-/* Список рядків */
-.rowsList {
+/* Вертикальний трек карт */
+.track {
   display: flex;
   flex-direction: column;
+  gap: 2.5rem;
+  /* Відступи між кроками */
 }
 
-/* Окремий рядок трансформації */
-.transformationRow {
+/* Картка як окремий преміум-шар */
+.card {
+  position: relative;
+  background: rgba(28, 26, 24, 0.4);
+  /* М'яка підкладка --soft */
+  border: 3px solid rgba(212, 163, 115, 0.08);
+  /* Дуже тонка золотава рамка */
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Елегантний ховер: картка немов наповнюється внутрішнім світлом */
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 163, 115, 0.25);
+  background: rgba(28, 26, 24, 0.8);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(212, 163, 115, 0.02);
+}
+
+/* Великі напівпрозорі журнальні цифри на фоні */
+.stepNumber {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 7.5rem;
+  font-weight: 700;
+  color: rgba(212, 163, 115, 0.03);
+  /* Ледь замітна розкіш */
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.5s ease;
+}
+
+.card:hover .stepNumber {
+  color: rgba(212, 163, 115, 0.07);
+  /* Цифра стає чіткішою при ховері */
+}
+
+/* Сітка всередині картки: До / Лінія / Після */
+.cardContent {
   display: grid;
-  grid-template-columns: 1fr 60px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr 80px 1fr;
   align-items: center;
-  padding: 2rem 1.5rem;
-  border-bottom: 1px solid var(--line);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 2;
 }
 
-/* Ефект наведення на рядок */
-.transformationRow:hover {
-  background: var(--paper);
-  border-radius: 16px;
-  border-color: transparent;
-}
-
-/* Клітинка ТОЧКИ А */
-.beforeCell p {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: var(--ink);
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.transformationRow:hover .beforeCell p {
+/* Текстові мітки над станами */
+.labelMuted {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
-  /* Злегка приглушуємо стан "зараз" */
+  margin-bottom: 0.75rem;
 }
 
-/* Клітинка Стрілочки */
-.bridgeCell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--line);
-  transition: transform 0.3s ease, color 0.3s ease;
+.labelGold {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
 }
 
-.transformationRow:hover .bridgeCell {
-  color: var(--terracotta);
-  transform: translateX(4px);
-  /* Інтерактивний рух праворуч */
-}
-
-/* Клітинка ТОЧКИ Б */
-.afterCell p {
-  font-size: 1.05rem;
+/* Опис станів */
+.beforeState p {
+  font-size: 1.15rem;
   line-height: 1.5;
-  color: var(--ink);
-  font-weight: 500;
-  margin: 0;
-  transition: color 0.3s ease;
+  color: var(--muted);
+  /* Початковий стан спеціально приглушений */
+  transition: color 0.4s ease;
 }
 
-/* Підсвічуємо бажаний результат */
-.transformationRow:hover .afterCell p {
-  color: var(--terracotta);
+.afterState p {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: #e9dccf;
+  /* Текст-мейн */
+  transition: color 0.4s ease;
 }
 
-/* Мобільні бейджі (приховані за замовчуванням) */
-.mobileBadgeBefore,
-.mobileBadgeAfter {
-  display: none;
+/* Динамічний інтерактивний розділювач між станами */
+.transitionDivider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-/* Адаптивність під мобільні екрани */
+.glowLine {
+  width: 1px;
+  height: 60px;
+  background: rgba(212, 163, 115, 0.15);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+/* Магічний ефект лінійного градієнту при наведенні */
+.card:hover .glowLine {
+  background: var(--gold-gradient);
+  height: 80px;
+  box-shadow: 0 0 12px rgba(212, 163, 115, 0.5);
+}
+
+/* Ідеальна адаптивність для смартфонів */
 @media (max-width: 820px) {
-  .tableHeaders {
-    display: none;
-    /* Ховаємо десктопні заголовки */
+  .card {
+    padding: 2.5rem 1.5rem;
   }
 
-  .transformationRow {
+  .cardContent {
     grid-template-columns: 1fr;
-    /* Усе в один стовпчик */
-    gap: 1rem;
-    padding: 2rem 1rem;
-    text-align: center;
-    /* Центруємо весь текст у рядку */
+    /* Перебудовуємо в один красивий стовпчик */
+    text-align: left;
+    gap: 1.5rem;
   }
 
-  .transformationRow:hover {
-    background: transparent;
-    /* Вимикаємо ховер-фон на мобілках */
+  .stepNumber {
+    font-size: 5rem;
+    top: 10px;
+    right: 15px;
   }
 
-  /* Центруємо стрілочку на мобільному */
-  .bridgeCell {
-    justify-content: center;
-    /* Центруємо по горизонталі всередині флекс-контейнера */
-    align-self: center;
-    /* Центруємо сам блок у грид-сітці */
-    padding: 0.2rem 0;
-    color: var(--terracotta);
-    transform: rotate(90deg);
-    /* Повертаємо стрілочку вниз */
-    width: auto;
-    /* Скидаємо фіксовану десктопну ширину */
+  /* Повертаємо розділювач горизонтально на мобільних */
+  .glowLine {
+    width: 40px;
+    height: 1px;
   }
 
-  /* Скасовуємо десктопний зсув стрілочки праворуч, робимо легкий рух вниз при ховері */
-  .transformationRow:hover .bridgeCell {
-    transform: rotate(90deg) translateX(4px);
+  .card:hover .glowLine {
+    width: 60px;
+    height: 1px;
   }
 
-  /* Акуратні текстові бейджі по центру */
-  .mobileBadgeBefore,
-  .mobileBadgeAfter {
-    display: block;
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-    text-align: center;
-  }
-
-  .mobileBadgeBefore {
-    color: var(--muted);
-  }
-
-  .mobileBadgeAfter {
-    color: var(--terracotta);
-  }
-
-  /* Скасовуємо тьмяність тексту ТОЧКИ А на мобілці для кращої читабельності */
-  .transformationRow:hover .beforeCell p {
-    color: var(--ink);
-  }
-
-  /* Забезпечуємо красиві відступи для параграфів на мобільних */
-  .beforeCell p,
-  .afterCell p {
-    max-width: 450px;
-    /* Щоб текст не розповзався занадто широко на планшетах */
-    margin: 0 auto;
+  .transitionDivider {
+    justify-content: flex-start;
   }
 }
