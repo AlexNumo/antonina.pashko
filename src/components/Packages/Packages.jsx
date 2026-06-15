@@ -19,14 +19,24 @@ export default function Packages({ onSelectPackage }) {
           {visiblePackages.map((pkg) => {
             const hasPlacesLimit = pkg.availablePlaces !== undefined;
             const isSoldOut = hasPlacesLimit && pkg.availablePlaces <= 0;
-            const isFlame = pkg.featured === true;
+            
+            // Чітке розділення категорій для гнучкого стилювання
+            const isVip = pkg.name.toLowerCase().includes('віп');
+            const isStandardFlame = pkg.name.toLowerCase().includes('супровід') && !isVip;
+            const hasVideo = isStandardFlame || isVip; // Обидва преміум-тарифи мають відеофон
 
             return (
               <article 
-                className={`${styles.card} ${pkg.featured ? styles.featured : ''} ${isSoldOut ? styles.soldOutCard : ''} ${isFlame ? styles.flameCard : ''}`} 
+                className={`
+                  ${styles.card} 
+                  ${pkg.featured ? styles.featured : ''} 
+                  ${isSoldOut ? styles.soldOutCard : ''} 
+                  ${isStandardFlame ? styles.flameCard : ''} 
+                  ${isVip ? styles.vipCard : ''}
+                `} 
                 key={pkg.name}
               >
-                {isFlame && (
+                {hasVideo && (
                   <video 
                     src={BackgroundCard}
                     autoPlay 
@@ -67,9 +77,9 @@ export default function Packages({ onSelectPackage }) {
                   ) : (
                     <button 
                       onClick={() => onSelectPackage(pkg.name)}
-                      className={`${pkg.featured ? 'btn-light' : 'btn-primary'} ${isFlame ? styles.videoBtn : styles.standardBtn}`}
+                      className={`${pkg.featured ? 'btn-light' : 'btn-primary'} ${hasVideo ? styles.videoBtn : styles.standardBtn}`}
                     >
-                      {isFlame && (
+                      {hasVideo && (
                         <video 
                           src={BackgroundBTN}
                           autoPlay 
@@ -79,7 +89,7 @@ export default function Packages({ onSelectPackage }) {
                           className={styles.btnVideoBackground}
                         />
                       )}
-                      <span className={isFlame ? styles.videoBtnText : styles.btnText}>
+                      <span className={hasVideo ? styles.videoBtnText : styles.btnText}>
                         Обрати {pkg.name}
                       </span>
                     </button>

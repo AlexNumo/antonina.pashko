@@ -1,4 +1,4 @@
-import portrait from '../../assets/antonina-portrait.jpg';
+import portrait from '../../assets/antonina-portrait.jpeg';
 import styles from './About.module.css';
 
 export default function About() {

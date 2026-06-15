@@ -10,7 +10,7 @@ export default function CTA() {
         за тиждень. З першим чесним кроком до себе справжньої.
       </p>
       <div className={styles.actions}>
-        <a href="https://instagram.com/tonypashko" className="btn-primary">Написати ПЕРЕХІД</a>
+        <a href="https://instagram.com/tonypashko" className="btn-primary">Написати в Intagram</a>
         <a href="#packages" className="btn-secondary">Повернутись до пакетів</a>
       </div>
     </section>

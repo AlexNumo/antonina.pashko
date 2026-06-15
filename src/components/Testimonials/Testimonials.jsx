@@ -1,43 +1,17 @@
 import styles from './Testimonials.module.css';
-
-const reviews = [
-  {
-    name: 'Марія, 34 роки',
-    role: 'Підприємиця, Львів',
-    text: 'Вже після першої практики відчула, що моя сила більше не виснажує, а працює на мене. Знайшла опору в собі та легкість, про яку давно мріяла.',
-  },
-  {
-    name: 'Олена, 29 років',
-    role: 'IT-спеціалістка, Дніпро',
-    text: 'Те, що колись було внутрішнім тягарем, тепер працює на мене. Моя сила притягує, а не виснажує. Контроль відпустив.',
-  },
-  {
-    name: 'Катерина, 41 рік',
-    role: 'Топ-менеджерка, Харків',
-    text: 'Змінився не лише мій день, а й світогляд: я тепер бачу можливості там, де раніше були лише обмеження і втома.',
-  },
-  {
-    name: 'Анна, 32 роки',
-    role: 'Дизайнерка, Київ',
-    text: 'Я нарешті відчула різницю між "досягати з напруги" та "створювати з ресурсу". Це зовсім інша якість життя, яка вартує кожної хвилини на курсі.',
-  },
-  {
-    name: 'Наталія, 37 років',
-    role: 'Психологиня, Одеса',
-    text: 'Цей процес повернув мені контакт із власною тишею та бажаннями. Більше немає потреби комусь щось доводити. Просто живу.',
-  }
-];
+import { REVIEWS } from '../../config/courseReviews';
+ 
 
 export default function Testimonials() {
-  // Подвоюємо масив для створення ілюзії безкінечного циклу анімації
-  const duplicatedReviews = [...reviews, ...reviews];
+  // Подвоюємо масив для створення ілюзії безкінечного циклу анімації каруселі
+  const duplicatedReviews = [...REVIEWS, ...REVIEWS];
 
   return (
     <section className={styles.testimonials}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className="section-label">Відгуки</span>
-          <h2>Жінки, які повернули собі опору</h2>
+          <h2>Жінки та чоловіки, які повернули собі власну силу</h2>
         </div>
       </div>
 
@@ -47,7 +21,7 @@ export default function Testimonials() {
           {duplicatedReviews.map((review, index) => (
             <article className={styles.card} key={`${review.name}-${index}`}>
               
-              {/* Верхня панель картки з іконкою верифікації */}
+              {/* Верхня панель картки з іконкою серця (верифікація досвіду) */}
               <div className={styles.cardHeader}>
                 <div className={styles.verifiedIcon}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +33,7 @@ export default function Testimonials() {
 
               <p className={styles.reviewText}>“{review.text}”</p>
 
-              {/* Дані про авторку відгуку */}
+              {/* Дані про автора відгуку */}
               <div className={styles.authorInfo}>
                 <div className={styles.avatarPlaceholder}>
                   {review.name.charAt(0)}

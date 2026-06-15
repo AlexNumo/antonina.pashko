@@ -1,13 +1,13 @@
 export const COURSE_CONFIG = {
   title: 'Точка переходу',
-  subtitle: '7-денний онлайн-процес',
+  subtitle: '7-денний онлайн-практикум',
   packages: {
     base: {
       id: 'base',
       name: 'Базовий',
       tag: 'Самостійно',
-      desc: 'Повне самостійне проходження процесу у своєму темпі.',
-      price: '30€',
+      desc: 'Повне самостійне проходження практикуму у своєму темпі.',
+      price: '20€',
       oldPrice: '100€',
       featured: false,
       hidden: false,
@@ -24,7 +24,7 @@ export const COURSE_CONFIG = {
       name: 'Супровід',
       tag: 'З Антоніною',
       desc: 'Все з базового пакета плюс живий контакт і підтримка протягом тижня.',
-      price: '150€',
+      price: '125€',
       oldPrice: '200€',
       featured: true,
       hidden: false,

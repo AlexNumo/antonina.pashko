@@ -136,6 +136,7 @@
 
 .flameCard .price strong {
   color: #FF9E7A;
+  /* Яскравий вогняний акцент */
 }
 
 .price span {
@@ -326,6 +327,64 @@
 
 .btnText {
   color: inherit;
+}
+
+.vipCard {
+  background: #1F1A17;
+  /* Дорогий глибокий графіт замість агресивного чорного */
+  border-color: rgba(184, 65, 47, 0.3);
+  box-shadow: 0 25px 60px rgba(31, 26, 23, 0.25);
+}
+
+.vipCard .tag {
+  color: #B8412F;
+  background: #FFF0E8;
+  /* Залишаємо фірмовий світлий тег для контрасту */
+}
+
+.vipCard h3 {
+  color: #FFFFFF;
+}
+
+.vipCard p {
+  color: rgba(255, 255, 255, 0.65);
+  /* Стриманий білий текст */
+}
+
+.vipCard .price {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.vipCard .price strong {
+  color: #F3D9D1;
+  /* Благородне світло-рожеве золото для ціни */
+}
+
+.vipCard .price span {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.vipCard .price small {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.vipCard li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.vipCard li::before {
+  color: #F3D9D1;
+  /* Галочки в тон ціни */
+}
+
+.vipCard .placesLeft {
+  background: rgba(184, 65, 47, 0.15);
+  color: #FFF0E8;
+  border-color: rgba(184, 65, 47, 0.25);
+}
+
+.vipCard .placesLeft strong {
+  color: #FFFFFF;
 }
 
 @media (max-width: 860px) {

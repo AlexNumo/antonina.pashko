@@ -1,7 +1,7 @@
 .badge {
   position: absolute;
   /* Робимо його більшим та помітнішим */
-  top: 25px;
+  top: 0px;
   right: 16px;
 
   /* Ідеальний круг */
@@ -13,7 +13,7 @@
   border-radius: 50%;
 
   /* Насичений, дорогий колір */
-  background: var(--terracotta);
+  background: var(--ink);
   color: var(--white);
 
   /* Типографіка: жирна, чітка */

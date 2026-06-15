@@ -15,14 +15,6 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-важливо чорний текст,
-я переросла перенести на іншу строку,
-три шари замінити на щось інше,
-не нове життя змінити на кращий візуал (що було і що стало),
-навбар про спікера (замість Антона)
-авторка процесу змінити на авторка практикуму,
-я працюю з жінками перефразувати,
-кількість жінок змінити,
-відгуки змінити колір і додати більше відгуків та додати іконки,
-
-пакети змінити кольорову гаму, віп 400 і 4 онлайн зустрічі, Zoom-зустріч наприкінці якось змінити, змінити відсотки (виходять на навбар),
+Відсотки здвинути
+Зробити захист і шифрування передачі персональних даних
+Прийняти рішення щодо домена, це довіра людей до сайту
