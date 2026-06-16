@@ -10,7 +10,6 @@
   z-index: 100;
 }
 
-/* Розмитий задній фон (Ефект рідкого золотого неону) */
 .neonGlow {
   position: absolute;
   width: 55px;
@@ -21,7 +20,6 @@
   pointer-events: none;
 }
 
-/* САМА ПЕЧАТКА ДИСКАУНТУ (Очищена від білих спалахів) */
 .badge {
   position: relative;
   width: 68px;
@@ -31,29 +29,19 @@
   place-items: center;
   background: var(--gold-gradient);
   color: #0e0d0c;
-  /* Контрастний темний текст */
-
   font-weight: 900;
   font-size: 1.2rem;
   font-family: inherit;
   letter-spacing: -0.02em;
-
-  /* ЗАМІНА: Прибрали білу рамку на користь тонкої золотавої, щоб бейдж не різав око */
   border: 1.5px solid rgba(212, 163, 115, 0.4);
-
-  /* ВИПРАВЛЕНО: Прибрали внутрішній білий box-shadow, залишили тільки об'ємне золоте сяйво */
   box-shadow: 0 10px 30px rgba(212, 163, 115, 0.5);
-
   cursor: pointer;
   overflow: hidden;
   transform: rotate(5deg);
   pointer-events: auto;
-
-  /* ДОДАНО: Потужна CSS-анімація пульсації тіні */
   animation: goldPulse 2.2s infinite ease-in-out;
 }
 
-/* ЕФЕКТ БЛИСКАВКИ (Анімація преміального відблиску) */
 .shimmerEffect {
   position: absolute;
   top: 0;
@@ -63,13 +51,11 @@
   background: linear-gradient(90deg,
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 0.3) 50%,
-      /* Зменшили яскравість спалаху для м'якості */
       rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   animation: shimmerAnim 3.5s infinite linear;
 }
 
-/* АНІМАЦІЯ ПУЛЬСАЦІЇ СЯЙВА */
 @keyframes goldPulse {
   0% {
     box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
@@ -77,7 +63,6 @@
 
   50% {
     box-shadow: 0 12px 40px rgba(212, 163, 115, 0.7);
-    /* Максимальний розлив золотого світла */
   }
 
   100% {
@@ -102,7 +87,6 @@
 .badge .text {
   position: relative;
   z-index: 2;
-  /* Прибрали білу підкладку під текстом, щоб він був чистим */
   text-shadow: none;
 }
 

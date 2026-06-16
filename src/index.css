@@ -1,31 +1,20 @@
 :root {
-  /* Основна палітра в стилі Luxury Dark */
   --paper: #121110;
-  /* Глибокий, дорогий вугільно-чорний фон (не чистий #000) */
   --white: #ffffff;
   --ink: #4b4646;
-  /* М'який біло-кремовий колір тексту для ідеального контрасту */
   --muted: #706762;
-  /* Шляхетний сіро-коричневий для другорядного тексту */
   --soft: #1c1a18;
-  /* Світліший чорний для підкладок карт та блоків */
   --line: rgba(212, 163, 115, 0.12);
-  /* Тонкі ледь помітні золотаві лінії */
   --graphite: #1a1816;
-
-  /* Золоті акценти (відтінки дорогого шампанського та рідкого золота) */
   --gold: #d4a373;
   --gold-light: #e7c6a5;
   --gold-dark: #b58255;
   --gold-gradient: linear-gradient(135deg, #e7c6a5 0%, #d4a373 50%, #b58255 100%);
   --text-main: #e9dccf;
-  /* Теракоту прибираємо, замінюємо на золото */
   --terracotta: var(--gold);
   --terracotta-dark: var(--gold-dark);
   --rose: #241f1c;
-
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
-
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -74,7 +63,6 @@ p {
   margin: 0;
 }
 
-/* Шрифти як у преміум-лендінгах */
 h1,
 h2,
 h3,
@@ -90,7 +78,6 @@ h1 {
   background: var(--gold-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Головний заголовок тепер витончено переливається золотом */
 }
 
 h2 {
@@ -107,7 +94,6 @@ h3 {
   color: var(--gold-light);
 }
 
-/* Тонка золота лінія-маркер перед секціями */
 .section-label {
   display: inline-flex;
   align-items: center;
@@ -127,7 +113,6 @@ h3 {
   background: var(--gold-gradient);
 }
 
-/* Навігація в стилі Glassmorphism на темному тлі */
 .site-nav {
   position: fixed;
   z-index: 990;
@@ -189,7 +174,6 @@ h3 {
   color: var(--gold-light);
 }
 
-/* Головна кнопка в меню — повністю золотий градієнт */
 .nav-links .nav-cta {
   color: #121110;
   background: var(--gold-gradient);
@@ -209,7 +193,6 @@ h3 {
   filter: brightness(1.05);
 }
 
-/* Кнопки на сайті */
 .btn-primary,
 .btn-secondary,
 .btn-light {
@@ -227,7 +210,6 @@ h3 {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Основна кнопка дії */
 .btn-primary {
   color: #121110;
   background: var(--gold-gradient);
@@ -241,7 +223,6 @@ h3 {
   filter: brightness(1.08);
 }
 
-/* Контурна кнопка */
 .btn-secondary {
   color: var(--ink);
   background: transparent;
@@ -254,7 +235,6 @@ h3 {
   border-color: var(--gold);
 }
 
-/* Світла кнопка (для карток) */
 .btn-light {
   color: #121110;
   background: var(--white);

@@ -6,7 +6,6 @@ export default function About() {
     <section className={styles.about} id="about">
       <div className={styles.inner}>
         
-        {/* Фотоблок із преміальним ефектом рамки */}
         <div className={styles.photoWrap}>
           <img src={portrait} alt="Антоніна Пашко" />
           <div className={styles.photoGlow}></div>
@@ -25,7 +24,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* Статистика як благородні темні ніші */}
           <div className={styles.stats}>
             <div className={styles.statBox}>
               <strong>17+</strong>
@@ -41,7 +39,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Преміальний список регалій */}
           <div className={styles.premiumList}>
             <h3>Професійний бекграунд та регалії</h3>
             <ul>

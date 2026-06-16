@@ -1,7 +1,6 @@
 .testimonials {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--paper);
-  /* Темний розкішний фон */
   overflow: hidden;
 }
 
@@ -21,7 +20,6 @@
   color: #ffffff;
 }
 
-/* Контейнер маски */
 .marqueeContainer {
   position: relative;
   width: 100%;
@@ -42,7 +40,6 @@
   animation-play-state: paused;
 }
 
-/* Картка адаптована під Luxury Dark */
 .card {
   width: 380px;
   min-height: 280px;
@@ -51,7 +48,6 @@
   padding: 2.2rem;
   border-radius: 24px;
   background: rgba(28, 26, 24, 0.5);
-  /* Матовий --soft */
   border: 1px solid rgba(212, 163, 115, 0.08);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -61,7 +57,6 @@
 
 .card:active {
   cursor: grabbing;
-  /* Курсор стискається в кулак під час тримання */
 }
 
 .card:hover {
@@ -92,7 +87,6 @@
   color: var(--muted);
 }
 
-/* Розумне обрізання тексту до 4 рядків */
 .reviewText {
   font-size: 1.05rem;
   line-height: 1.6;
@@ -101,20 +95,17 @@
   font-style: italic;
   display: -webkit-box;
   -webkit-line-clamp: 4;
-  /* Обмежуємо строго чотирма строками */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Делікатна підказка */
 .readMoreBtn {
   font-size: 0.8rem;
   color: var(--gold-light);
   letter-spacing: 0.03em;
   margin-bottom: 1.5rem;
   margin-top: auto;
-  /* Притискає кнопку та інфо автора до низу */
   opacity: 0.6;
   transition: opacity 0.3s ease;
 }
@@ -163,7 +154,6 @@
   color: var(--muted);
 }
 
-/* СТИЛІ ДЛЯ МОДАЛЬНОГО ВІКНА */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -172,7 +162,6 @@
   height: 100%;
   background: rgba(10, 9, 8, 0.75);
   backdrop-filter: blur(12px);
-  /* Збільшив розмиття тла під стиль iOS */
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -190,7 +179,6 @@
   position: relative;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8);
   will-change: transform, width, height;
-  /* Оптимізація для плавності відеокарти */
 }
 
 .closeButton {
@@ -240,7 +228,6 @@
   color: #ffffff;
 }
 
-/* АНІМАЦІЇ */
 @keyframes scrollMarquee {
   0% {
     transform: translateX(0);
@@ -273,7 +260,6 @@
   }
 }
 
-/* Адаптація під мобільні */
 @media (max-width: 600px) {
   .card {
     width: 300px;

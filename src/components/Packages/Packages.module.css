@@ -11,19 +11,16 @@
 .header h2 {
   margin-top: 1rem;
   color: #fff5ea;
-  /* М'яке біле світло для заголовків */
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  /* Робимо 3 колонки для трьох тарифів */
   gap: 2rem;
   margin-top: 4rem;
   align-items: stretch;
 }
 
-/* ЗАГАЛЬНА БАЗА ДЛЯ КАРТОК */
 .card {
   position: relative;
   display: flex;
@@ -35,12 +32,9 @@
   isolation: isolate;
 }
 
-/* 1. БАЗОВИЙ ТАРИФ: Стриманий мінімалізм */
 .baseCard {
   background: #1a1816;
-  /* Глибокий графіт */
   border: 1px solid rgba(212, 163, 115, 0.15);
-  /* Дуже тонка золота лінія */
   color: #e9dccf;
 }
 
@@ -77,13 +71,11 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* 2. ТАРИФ СУПРОВІД (FEATURED): Головний магніт сторінки */
 .flameCard {
   background: #241f1c;
   border: 1px solid var(--gold);
   color: #ffffff;
   transform: scale(1.03);
-  /* Візуально домінує */
   z-index: 2;
   box-shadow: 0 20px 50px rgba(212, 163, 115, 0.15),
     inset 0 0 30px rgba(212, 163, 115, 0.05);
@@ -128,10 +120,8 @@
   color: #ffffff;
 }
 
-/* 3. VIP ТАРИФ: Абсолютний преміум оксамит */
 .vipCard {
   background: #0b0a0a;
-  /* Ультра-темна ніч */
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
@@ -177,7 +167,6 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* ДЕТАЛІ ОФОРМЛЕННЯ КАРТОК */
 .cardVideoBackground {
   position: absolute;
   top: 50%;
@@ -189,7 +178,6 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0.18;
-  /* Зменшили, щоб відео було благородною текстурою, а не заважало читати */
 }
 
 .cardContent {
@@ -270,7 +258,6 @@
   font-weight: 900;
 }
 
-/* ЛІМІТИ МІСЦЬ */
 .placesBadge {
   margin-bottom: 1.5rem;
   padding: 0.6rem 1rem;
@@ -303,7 +290,6 @@
   opacity: 0.55;
 }
 
-/* КНОПКИ */
 .videoBtn {
   position: relative;
   width: 100%;
@@ -406,4 +392,35 @@
   .flameCard {
     transform: none;
   }
+}
+
+.bonusWrapper {
+  margin: 20px 0;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid #b8412f;
+  border-radius: 0 8px 8px 0;
+}
+
+.bonusHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b8412f;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.bonusHeader svg {
+  opacity: 0.9;
+}
+
+.bonusText {
+  font-size: 0.9rem !important;
+  line-height: 1.5;
+  color: #cccccc !important;
+  margin: 0 !important;
 }

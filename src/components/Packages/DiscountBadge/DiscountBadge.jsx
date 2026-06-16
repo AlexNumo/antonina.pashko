@@ -65,25 +65,21 @@ export default function DiscountBadge({ oldPrice, newPrice, variant = 'circle', 
 
   return (
     <div className={styles.badgeWrapper} style={style} ref={badgeRef}>
-      {/* Пульсуючий неон позаду */}
       <motion.div 
         className={styles.neonGlow}
         animate={{
-          scale: [1, 1.4, 1], // Трохи збільшили розмах неону
+          scale: [1, 1.4, 1], 
           opacity: [0.3, 0.7, 0.3]
         }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* САМ БЕЙДЖ З ЕФЕКТОМ ЗБІЛЬШЕННЯ/ЗМЕНШЕННЯ */}
       <motion.div 
         className={`${styles.badge} ${variant === 'accent' ? styles.accentVariant : ''}`}
-        /* === ГОЛОВНА АНІМАЦІЯ ПУЛЬСАЦІЇ РОЗМІРУ === */
         animate={{
-          scale: [1, 1.1, 1], // Бейдж плавно збільшується на 10% і повертається
-          rotate: [5, 7, 5]   // Додали легке похитування для динаміки
+          scale: [1, 1.1, 1], 
+          rotate: [5, 7, 5]   
         }}
-        /*whileHover перебиває animate при наведенні, що є правильним для UX */
         whileHover={{ scale: 1.2, rotate: 10, transition: { duration: 0.2 } }}
         whileTap={{ scale: 0.9 }}
         transition={{ 

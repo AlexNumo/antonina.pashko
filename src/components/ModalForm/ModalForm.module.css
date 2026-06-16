@@ -1,7 +1,3 @@
-/* ========================================== */
-/* СТИЛІ МОДАЛЬНОГО ВІКНА (LUXURY DARK)      */
-/* ========================================== */
-
 .overlay {
   position: fixed;
   top: 0;
@@ -9,9 +5,7 @@
   width: 100%;
   height: 100%;
   background: rgba(10, 9, 8, 0.8);
-  /* Глибоке затемнення тла */
   backdrop-filter: blur(12px);
-  /* Дороге розмиття iOS style */
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -31,7 +25,6 @@
   width: 100%;
   max-width: 520px;
   background: #161413;
-  /* Шляхетний чорний з відтінком дерева/кави */
   border: 1px solid var(--line);
   border-radius: 32px;
   padding: clamp(2rem, 5vw, 3rem);
@@ -45,7 +38,6 @@
   transform: translateY(0) scale(1);
 }
 
-/* Кнопка закриття (Хрестик) */
 .closeBtn {
   position: absolute;
   top: 1.5rem;
@@ -99,7 +91,6 @@
   font-weight: 500;
 }
 
-/* Маркування полів введення */
 .fieldLabel {
   display: grid;
   gap: 0.5rem;
@@ -109,7 +100,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Стилізація текстових інпутів під темну тему */
 .form input[type="text"],
 .form textarea {
   width: 100%;
@@ -118,7 +108,6 @@
   padding: 1rem 1.2rem;
   color: #ffffff;
   background: rgba(28, 26, 24, 0.6);
-  /* Темний напівпрозорий інпут */
   outline: none;
   font-family: inherit;
   font-size: 1rem;
@@ -142,13 +131,11 @@
   resize: vertical;
 }
 
-/* ПРЕМІАЛЬНА ЗОЛОТА КНОПКА ВІДПРАВКИ (CTA) */
 .submitBtn {
   min-height: 56px;
   border: 0;
   border-radius: 999px;
   color: #121110;
-  /* Темний текст на золотому фоні для превосходного контрасту */
   background: var(--gold-gradient);
   font-weight: 700;
   font-size: 1.05rem;
@@ -177,7 +164,6 @@
   filter: none;
 }
 
-/* Контейнер блоку згоди */
 .termsWrapper {
   display: flex;
   flex-direction: column;
@@ -191,7 +177,6 @@
   gap: 12px;
 }
 
-/* Кастомізація поведінки чекбокса під стиль теми */
 .termsCheckbox input[type="checkbox"] {
   width: 18px !important;
   height: 18px !important;
@@ -199,7 +184,6 @@
   cursor: pointer;
   flex-shrink: 0;
   accent-color: var(--gold);
-  /* Фарбує стандартну галочку в золото */
 }
 
 .termsLabel {
@@ -224,17 +208,14 @@
   color: #ffffff;
 }
 
-/* Помилка забутого чекбокса */
 .errorMessage {
   font-size: 0.8rem;
   color: #ff6b6b;
-  /* Світло-червоний для кращої видимості на темному фоні */
   padding-left: 30px;
   font-weight: 500;
   animation: fadeIn 0.25s ease-in-out;
 }
 
-/* Екран успішної відправки заявки */
 .successState {
   text-align: center;
   padding: 3rem 1rem;
@@ -284,7 +265,6 @@
     padding: 2rem 1.5rem;
     border-radius: 28px;
     align-self: flex-end;
-    /* На мобілках плавно випливає знизу, як шторка */
     margin-bottom: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

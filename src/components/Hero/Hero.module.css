@@ -6,11 +6,9 @@
   align-items: center;
   padding: 8rem clamp(1rem, 5vw, 5rem) 4rem;
   background: var(--paper);
-  /* Чистий Luxury Dark фон сторінки */
   position: relative;
 }
 
-/* Додамо м'яке фонове золото, яке ледь світить у кутку, не заважаючи тексту */
 .hero::before {
   content: '';
   position: absolute;
@@ -41,7 +39,6 @@
   max-width: 720px;
   margin-top: 1.6rem;
   color: #e9dccf;
-  /* Світло-кремовий преміум колір для легкості читання */
   font-size: clamp(1.35rem, 2.3vw, 1.85rem);
   line-height: 1.35;
 }
@@ -54,7 +51,6 @@
   line-height: 1.6;
 }
 
-/* ФАКТИ (Плашки) */
 .facts {
   display: flex;
   flex-wrap: wrap;
@@ -68,13 +64,11 @@
   padding: 0.55rem 1.1rem;
   color: var(--gold-light);
   background: rgba(26, 24, 22, 0.6);
-  /* Темна шляхетна підкладка */
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
-/* БЛОК ЦІНИ */
 .priceContainer {
   position: relative;
   display: flex;
@@ -82,7 +76,6 @@
   margin-top: 3rem;
   width: fit-content;
   padding-left: 90px;
-  /* Залишаємо ідеальне місце ліворуч під наш DiscountBadge */
   min-height: 75px;
 }
 
@@ -115,11 +108,9 @@
   letter-spacing: 0.08em;
   display: block;
   width: 100%;
-  /* Переносить напис на новий рядок для гарної геометрії */
   margin-top: 0.2rem;
 }
 
-/* КНОПКИ ДІЇ */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +158,6 @@
   background: rgba(212, 163, 115, 0.03);
 }
 
-/* ВІЗУАЛЬНА ЧАСТИНА (ФОТО) */
 .visual {
   position: relative;
   align-self: stretch;
@@ -185,7 +175,6 @@
   object-fit: cover;
   object-position: 54% center;
   filter: brightness(0.9);
-  /* Трохи приглушуємо яскравість фото під стиль сайту */
 }
 
 .quote {
@@ -196,7 +185,6 @@
   padding: 1.8rem;
   color: #ffffff;
   background: rgba(14, 13, 12, 0.82);
-  /* Глибокий темний пларшет */
   border: 1px solid rgba(212, 163, 115, 0.2);
   border-radius: 24px;
   backdrop-filter: blur(16px);
@@ -218,7 +206,6 @@
   line-height: 1.4;
 }
 
-/* МЕДІА-ЗАПИТИ */
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;

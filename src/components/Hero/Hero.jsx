@@ -25,7 +25,6 @@ export default function Hero({ onSelectPackage }) {
           <span>доступ назавжди</span>
         </div>
 
-        {/* Блок ціни з інтегрованим пульсуючим бейджем */}
         <div className={styles.priceContainer}>
 
           <div className={styles.priceDetails}>

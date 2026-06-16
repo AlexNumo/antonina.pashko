@@ -42,22 +42,18 @@ export default function TransformationMap() {
           {steps.map((step) => (
             <div key={step.id} className={styles.card}>
               
-              {/* Фоновий маркер етапу */}
               <div className={styles.stepNumber}>{step.id}</div>
               
               <div className={styles.cardContent}>
-                {/* Стан ТОЧКИ А (Зараз) */}
                 <div className={styles.beforeState}>
                   <span className={styles.labelMuted}>Ілюзія контролю</span>
                   <p>{step.before}</p>
                 </div>
 
-                {/* Містичний інтерактивний розділювач */}
                 <div className={styles.transitionDivider}>
                   <div className={styles.glowLine}></div>
                 </div>
 
-                {/* Стан ТОЧКИ Б (Результат) */}
                 <div className={styles.afterState}>
                   <span className={styles.labelGold}>Нова опора</span>
                   <p>{step.after}</p>

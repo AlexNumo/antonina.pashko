@@ -1,9 +1,7 @@
 .footer {
   width: 100%;
   background: #0e0d0c;
-  /* Ультра-темний глибокий преміум фон */
   border-top: 1px solid rgba(212, 163, 115, 0.12);
-  /* Тонка золотава лінія з :root */
   padding: 3rem clamp(1rem, 5vw, 5rem);
 }
 
@@ -16,7 +14,6 @@
   gap: 2rem;
 }
 
-/* БРЕНД (Ім'я + Інстаграм) */
 .brand {
   display: flex;
   flex-direction: column;
@@ -33,7 +30,6 @@
 
 .instagram {
   color: var(--gold-light) !important;
-  /* Робимо лінк видимим та яскравим */
   font-weight: 800;
   font-size: 0.95rem;
   text-decoration: none;
@@ -45,7 +41,6 @@
   color: #ffffff !important;
 }
 
-/* ЮРИДИЧНІ ПОСИЛАННЯ */
 .legal {
   display: flex;
   gap: 2rem;
@@ -53,7 +48,6 @@
 
 .legal a {
   color: var(--muted);
-  /* Стриманий шляхетний колір у спокійному стані */
   font-size: 0.88rem;
   font-weight: 500;
   text-decoration: none;
@@ -62,10 +56,8 @@
 
 .legal a:hover {
   color: var(--gold);
-  /* Підсвічування золотом при наведенні */
 }
 
-/* КОПІРАЙТ */
 .copyright {
   display: flex;
   flex-direction: column;
@@ -86,24 +78,20 @@
   letter-spacing: 0.05em;
 }
 
-/* МАКСИМАЛЬНИЙ АДАПТИВ ДЛЯ МОБІЛОК */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     align-items: flex-start;
-    /* Вирівнювання по лівому краю на смартфонах */
     gap: 2.5rem;
   }
 
   .legal {
     flex-direction: column;
-    /* Документи стають один під одним */
     gap: 1rem;
   }
 
   .copyright {
     align-items: flex-start;
-    /* Копірайт перетікає ліворуч */
     border-top: 1px solid rgba(212, 163, 115, 0.08);
     width: 100%;
     padding-top: 1.5rem;

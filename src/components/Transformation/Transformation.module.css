@@ -2,7 +2,6 @@
   padding: clamp(5rem, 10vw, 8rem) 0;
   color: var(--text-main);
   background: var(--paper);
-  /* Плавний перехід у загальний фон */
 }
 
 .container {
@@ -31,16 +30,13 @@
   line-height: 1.5;
 }
 
-/* Сітка з незалежними картками, що "дихають" */
 .timeline {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
-  /* Відокремлюємо інформацію відчутним проміжком */
   margin-top: 4rem;
 }
 
-/* Окрема картка дня програми */
 .day {
   display: flex;
   flex-direction: column;
@@ -48,11 +44,8 @@
   min-height: 240px;
   padding: 2.5rem;
   background: var(--soft);
-  /* М'яка темна підкладка */
   border: 1px solid var(--line);
-  /* Тонка золотава межа замість білої сітки */
   border-radius: 24px;
-  /* Округлі дорогі кути */
   cursor: default;
 }
 
@@ -70,7 +63,6 @@
   text-transform: uppercase;
 }
 
-/* Акуратний бейдж формату */
 .formatBadge {
   font-size: 0.75rem;
   padding: 0.25rem 0.65rem;
@@ -95,10 +87,8 @@
   font-size: 1.02rem;
   line-height: 1.45;
   flex-grow: 1;
-  /* Рівномірно проштовхує мету до нижнього краю */
 }
 
-/* Нижня панель таймінгів */
 .meta {
   display: flex;
   align-items: center;
@@ -113,7 +103,6 @@
   opacity: 0.5;
 }
 
-/* Адаптація під планшети та мобільні пристрої */
 @media (max-width: 960px) {
   .header {
     grid-template-columns: 1fr;
@@ -123,7 +112,6 @@
 
   .timeline {
     grid-template-columns: 1fr;
-    /* Картки стають одна під одною */
     gap: 1rem;
     margin-top: 2.5rem;
   }

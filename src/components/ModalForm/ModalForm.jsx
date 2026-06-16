@@ -9,7 +9,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showTermsError, setShowTermsError] = useState(false);
 
-  // Реф для автоматичного фокусу на перше поле
   const nameInputRef = useRef(null);
   
   const handleCloseWithReset = () => {
@@ -37,7 +36,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
-      // Робимо мікро-таймаут, щоб фокус спрацював після того, як відпрацює CSS-анімація появи модалки
       setTimeout(() => {
         nameInputRef.current?.focus();
       }, 100);
@@ -50,19 +48,15 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
     };
   }, [isOpen]);
 
-  // Функція для красивого форматування контактів (прибирання лінків та знаків @)
   const cleanContactInput = (input) => {
     let clean = input.trim();
     
-    // Якщо це email — повертаємо як є, тільки в нижньому регістрі
     if (clean.includes('@') && clean.includes('.')) {
       return clean.toLowerCase();
     }
     
-    // Якщо користувач вставив повне посилання на соцмережі, витягуємо тільки нік
     clean = clean.replace(/^(https?:\/\/)?(www\.)?(instagram\.com|instagr\.am|t\.me)\//i, '');
     
-    // Видаляємо знак @ з початку нікнейму для однорідності бази
     clean = clean.replace(/^@/, '');
     
     return clean;
@@ -91,7 +85,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
     const formattedTime = now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
     const fullDateTime = `${formattedDate} ${formattedTime}`;
 
-    // Очищаємо та валідуємо фінальні дані перед відправкою
     const finalData = {
       dateTime: fullDateTime,
       packageName: selectedPackage || 'Зворотній звʼязок (загальний)',
@@ -101,7 +94,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
       message: formValues.message.trim()
     };
 
-    // Додаткова міні-перевірка: якщо після очищення поля виявилися порожніми
     if (!finalData.name || !finalData.contact) {
       alert('Будь ласка, заповніть поля коректно.');
       setLoading(false);
@@ -163,7 +155,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
                 onChange={(e) => setFormValues({...formValues, name: e.target.value})} 
                 required 
                 disabled={loading} 
-                maxLength={60} // 👈 Звичайна людина не має імені довше 60 символів
+                maxLength={60}
               />
             </label>
 
@@ -176,7 +168,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
                 onChange={(e) => setFormValues({...formValues, contact: e.target.value})} 
                 required 
                 disabled={loading} 
-                maxLength={100} // 👈 Для нікнейму чи пошти цього з головою
+                maxLength={100}
               />
             </label>
 
@@ -189,7 +181,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
                 onChange={(e) => setFormValues({...formValues, message: e.target.value})} 
                 required 
                 disabled={loading} 
-                maxLength={800} // 👈 Оптимальний ліміт для опису ситуації (близько 2 абзаців)
+                maxLength={800}
               />
             </label>
             

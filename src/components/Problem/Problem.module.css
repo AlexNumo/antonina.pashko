@@ -1,7 +1,6 @@
 .problem {
   padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem);
   background: var(--paper);
-  /* Інтегруємо в загальний темний стиль */
 }
 
 .header {
@@ -23,7 +22,6 @@
   line-height: 1.5;
 }
 
-/* Розумна преміум сітка: 4 в ряд на десктопі, автоматичний переніс */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -31,19 +29,15 @@
   margin-top: 3rem;
 }
 
-/* Перетворення картки на інтерактивний квадрат */
 .sign {
   position: relative;
   aspect-ratio: 1 / 1;
-  /* Робить картку строго квадратною */
   display: grid;
   place-items: center;
-  /* Центрує контент по вертикалі та горизонталі */
   padding: 2rem;
   border: 1px solid var(--line);
   border-radius: 24px;
   background: rgba(28, 26, 24, 0.4);
-  /* Напівпрозорий --soft */
   overflow: hidden;
   cursor: default;
   transition: background 0.4s ease;
@@ -53,7 +47,6 @@
   background: rgba(28, 26, 24, 0.85);
 }
 
-/* Контейнер тексту, щоб тримати правильні відступи */
 .textContainer {
   position: relative;
   z-index: 2;
@@ -68,7 +61,6 @@
   margin: 0;
 }
 
-/* Фонова велика цифра під стиль рідкого золота */
 .bgNumber {
   position: absolute;
   top: 10px;
@@ -83,7 +75,6 @@
   z-index: 1;
 }
 
-/* Блок фінального інсайту */
 .insight {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);
@@ -120,7 +111,6 @@
   margin: 0;
 }
 
-/* Адаптація під мобільні екрани */
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -129,7 +119,6 @@
 
   .sign {
     aspect-ratio: auto;
-    /* На маленьких мобілках прибираємо жорсткий квадрат, щоб довгий текст не вилазив */
     min-height: 180px;
     padding: 2.5rem 1.5rem;
   }

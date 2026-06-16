@@ -5,7 +5,6 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         
-        {/* ЛІВА ЧАСТИНА: Автор курсу */}
         <div className={styles.brand}>
           <span>Антоніна Пашко</span>
           <a href="https://instagram.com/tonypashko" target="_blank" rel="noreferrer" className={styles.instagram}>
@@ -13,7 +12,6 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* ЦЕНТРАЛЬНА ЧАСТИНА: Юридичні документи */}
         <div className={styles.legal}>
           <a href="/privacy.html" target="_blank" rel="noreferrer">
             Політика конфіденційності
@@ -22,8 +20,7 @@ export default function Footer() {
             Публічна оферта
           </a>
         </div>
-
-        {/* ПРАВА ЧАСТИНА: Копірайт */}
+        
         <div className={styles.copyright}>
           <small>© 2026 · Точка переходу</small>
           <small className={styles.allRights}>Усі права захищено</small>

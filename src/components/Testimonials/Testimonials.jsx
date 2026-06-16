@@ -13,19 +13,16 @@ export default function Testimonials() {
   const trackRef = useRef(null);
   const controls = useAnimation();
 
-  // Функція, яка запускає безкінечний плавний рух
   const startScrolling = async () => {
     if (!trackRef.current) return;
-    
-    // Вираховуємо довжину половини треку (оскільки масив подвоєно)
+
     const trackWidth = trackRef.current.scrollWidth;
     const halfWidth = trackWidth / 2;
 
-    // Запускаємо лінійну анімацію до зміщення на -50%
     await controls.start({
       x: -halfWidth,
       transition: {
-        duration: 45, // Швидкість руху (чим більше, тим повільніше)
+        duration: 45,
         ease: 'linear',
         repeat: Infinity,
         repeatType: 'loop',
@@ -33,12 +30,10 @@ export default function Testimonials() {
     });
   };
 
-  // Запуск автоскролу при завантаженні
   useEffect(() => {
     startScrolling();
   }, [controls]);
 
-  // Керування скролом сторінки при відкритій модалці
   useEffect(() => {
     if (activeReview !== null) {
       document.body.style.overflow = 'hidden';
@@ -68,25 +63,22 @@ export default function Testimonials() {
         <motion.div 
           ref={trackRef}
           className={styles.marqueeTrack}
-          animate={controls} /* Анімація керується через JS */
+          animate={controls} 
           drag="x"
           dragConstraints={containerRef}
           dragElastic={0.05}
-          dragMomentum={false} /* Вимикаємо інерцію драгу, щоб вона не сперечалася з автоскролом */
+          dragMomentum={false}
           
-          // Коли користувач береться за картку — зупиняємо автопрокрутку повністю
           onDragStart={() => {
             setIsDragging(true);
             controls.stop();
           }}
           
-          // Коли користувач відпускає — стрічка плавно відновлює рух з поточної точки
           onDragEnd={() => {
             setTimeout(() => setIsDragging(false), 50);
             startScrolling();
           }}
-          
-          // Зупинка при звичайному наведенні мишки (hover)
+
           onHoverStart={() => !isDragging && controls.stop()}
           onHoverEnd={() => !isDragging && startScrolling()}
         >
@@ -126,7 +118,6 @@ export default function Testimonials() {
         </motion.div>
       </div>
 
-      {/* ПРЕМІАЛЬНЕ МОДАЛЬНЕ ВІКНО */}
       <AnimatePresence>
         {activeReview && (
           <motion.div 
