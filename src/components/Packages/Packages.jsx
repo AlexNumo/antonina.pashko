@@ -7,6 +7,32 @@ import BackgroundCard from '../../assets/videos/Background_Card_optimized.mp4';
 export default function Packages({ onSelectPackage }) {
   const visiblePackages = Object.values(COURSE_CONFIG.packages).filter((pkg) => !pkg.hidden);
 
+  const bonuses = [
+    {
+      id: 'meditation',
+      text: 'Авторська медитація **«Повернення до себе»** — 15 хвилин, які повертають контакт із собою для щоденних ритуалів.'
+    },
+    {
+      id: 'force-guide',
+      text: 'PDF-гайд **«Сила без напруги»** — 7 маркерів тотального контролю та 4 практики для повернення жіночого магнетизму.'
+    },
+    {
+      id: 'value-guide',
+      text: 'PDF-інтенсив **«7 ознак, що ти заслуговуєш свою цінність»** — практичний розбір для виходу із пастки доведення результату.'
+    }
+  ];
+
+  // Допоміжна функція для безпечного парсингу **bold** тексту без використання сторонніх бібліотек
+  const renderBonusText = (text) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   return (
     <section className={styles.packages} id="packages">
       <div className={styles.container}>
@@ -74,15 +100,19 @@ export default function Packages({ onSelectPackage }) {
 
                   <div className={styles.bonusWrapper}>
                     <div className={styles.bonusHeader}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5"/>
-                        <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 12V22H4V12M22 7H2V12H22V7Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M12 22V7M12 7C12 5.5 10.5 3 8.5 3C6.5 3 6 5 6 6C6 7 8 7 12 7ZM12 7C12 5.5 13.5 3 15.5 3C17.5 3 18 5 18 6C18 7 16 7 12 7Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      <span>Бонус до курсу</span>
+                      <span>Разом із курсом ти отримуєш 3 бонуси:</span>
                     </div>
-                    <p className={styles.bonusText}>
-                      Моя авторська медитація <strong>«Повернення до себе»</strong>. 15 хвилин, які повертають контакт із собою. Можеш слухати щоранку як ритуал — це твій інструмент назавжди.
-                    </p>
+                    <ul className={styles.bonusList}>
+                      {bonuses.map((bonus) => (
+                        <li key={bonus.id} className={styles.bonusItem}>
+                          {renderBonusText(bonus.text)}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   <ul>

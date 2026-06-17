@@ -395,9 +395,9 @@
 }
 
 .bonusWrapper {
-  margin: 20px 0;
+  margin: 22px 0;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border-left: 2px solid #b8412f;
   border-radius: 0 8px 8px 0;
 }
@@ -407,20 +407,47 @@
   align-items: center;
   gap: 8px;
   color: #b8412f;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .bonusHeader svg {
-  opacity: 0.9;
+  flex-shrink: 0;
 }
 
-.bonusText {
-  font-size: 0.9rem !important;
-  line-height: 1.5;
-  color: #cccccc !important;
+.bonusList {
+  list-style: none !important;
+  padding: 0 !important;
   margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bonusItem {
+  font-size: 0.88rem !important;
+  line-height: 1.45;
+  color: #cccccc !important;
+  position: relative;
+  padding-left: 14px !important;
+  margin: 0 !important;
+}
+
+.bonusItem::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(184, 65, 47, 0.4);
+}
+
+.bonusItem strong {
+  color: #ffffff;
+  font-weight: 500;
 }
