@@ -43,7 +43,7 @@
 
 .card p {
   margin-top: 1rem;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .note {
