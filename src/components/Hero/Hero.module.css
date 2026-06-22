@@ -73,7 +73,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1.8rem;
+  /* Зменшено з 3rem, оскільки вище з'явився блок форматів */
   width: fit-content;
   padding-left: 90px;
   min-height: 75px;
@@ -120,6 +121,9 @@
 }
 
 .primaryBtn {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
   padding: 1.1rem 2.2rem;
   border-radius: 999px;
   background: var(--gold-gradient);
@@ -204,6 +208,30 @@
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.98rem;
   line-height: 1.4;
+}
+
+.formatsBadge {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 4px;
+}
+
+.formatsTitle {
+  color: var(--gold-light);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.formatsList {
+  color: var(--muted);
+  font-size: 0.88rem;
+  /* Зменшений шрифтець, але видимий */
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  opacity: 0.85;
 }
 
 @media (max-width: 980px) {

@@ -15,7 +15,7 @@ export default function Problem() {
     <section className={styles.problem}>
       <div className={styles.header}>
         <span className="section-label">Це про тебе?</span>
-        <h2>7 ознак, що ти досі заслуговуєш свою цінність</h2>
+        <h2>7 ознак, що ти забула — твоя цінність не залежить від справ</h2>
         <p>
           Якщо відгукуються хоча б 3-4 пункти, це сигнал: твоя цінність ще прив'язана
           до корисності, сили, результату або схвалення.

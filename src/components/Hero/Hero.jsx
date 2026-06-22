@@ -2,8 +2,7 @@ import heroPhoto from '../../assets/antonina-city.jpg';
 import styles from './Hero.module.css';
 import { COURSE_CONFIG } from '../../config/courseConfig';
 
-
-export default function Hero({ onSelectPackage }) {
+export default function Hero() {
   const basePkg = COURSE_CONFIG.packages.base;
 
   return (
@@ -25,8 +24,13 @@ export default function Hero({ onSelectPackage }) {
           <span>доступ назавжди</span>
         </div>
 
-        <div className={styles.priceContainer}>
+        {/* НОВИЙ БЛОК: Інформація про три формати навчання */}
+        <div className={styles.formatsBadge}>
+          <span className={styles.formatsTitle}>Три формати — від 20€</span>
+          <span className={styles.formatsList}>Самостійно · З супроводом · VIP</span>
+        </div>
 
+        <div className={styles.priceContainer}>
           <div className={styles.priceDetails}>
             <span className={styles.current}>{basePkg.price}</span>
             <span className={styles.old}>{basePkg.oldPrice}</span>
@@ -35,13 +39,10 @@ export default function Hero({ onSelectPackage }) {
         </div>
 
         <div className={styles.actions}>
-          <button 
-            type="button"
-            onClick={() => onSelectPackage(basePkg.name)} 
-            className={styles.primaryBtn}
-          >
-            Записатися на {basePkg.name.toLowerCase()} курс
-          </button>
+          {/* Кнопка-якір замість звичайної кнопки для скролу до пакетів */}
+          <a href="#packages" className={styles.primaryBtn}>
+            Обрати формат
+          </a>
           <a href="#program" className={styles.secondaryBtn}>Подивитись програму</a>
         </div>
       </div>

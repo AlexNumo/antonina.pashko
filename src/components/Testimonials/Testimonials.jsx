@@ -55,7 +55,7 @@ export default function Testimonials() {
       <div className={styles.container}>
         <div className={styles.header}>
           <span className="section-label">Відгуки</span>
-          <h2>Жінки та чоловіки, які повернули собі власну силу</h2>
+          <h2>Вони пройшли свою точку переходу</h2>
         </div>
       </div>
 

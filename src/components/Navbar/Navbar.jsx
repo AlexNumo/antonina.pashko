@@ -17,7 +17,7 @@ export default function Navbar() {
         <li><a href="#about">Спікер</a></li>
         <li>
           <a href="#packages" className={styles.navCta}>
-            Про курс
+            ЗАПИСАТИСЯ
           </a>
         </li>
       </ul>

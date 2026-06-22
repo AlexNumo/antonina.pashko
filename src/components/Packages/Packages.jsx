@@ -92,11 +92,17 @@ export default function Packages({ onSelectPackage }) {
                     <small>ціна першого потоку</small>
                   </div>
 
-                  {hasPlacesLimit && (
-                    <div className={`${styles.placesBadge} ${isSoldOut ? styles.placesOut : styles.placesLeft}`}>
-                      {isSoldOut ? 'Місця закінчилися' : <>Залишилось місць: <strong>{pkg.availablePlaces}</strong></>}
-                    </div>
-                  )}
+                    {hasPlacesLimit && (
+                      <div className={`${styles.placesBadge} ${isSoldOut ? styles.placesOut : styles.placesLeft}`}>
+                        {isSoldOut ? (
+                          'Місця закінчилися'
+                        ) : (
+                          <>
+                            Цей потік закривається після набору групи
+                          </>
+                        )}
+                      </div>
+                    )}
 
                   <div className={styles.bonusWrapper}>
                     <div className={styles.bonusHeader}>
