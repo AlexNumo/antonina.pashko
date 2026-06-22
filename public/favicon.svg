@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="42" height="42">
+  <defs>
+    <!-- Фірмовий золотий градієнт -->
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FAEDCD" />
+      <stop offset="100%" stop-color="#D4A373" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Темне коло-основа із тонкою золотою рамкою -->
+  <circle cx="21" cy="21" r="19" fill="#0E0D0C" stroke="rgba(212, 163, 115, 0.6)" stroke-width="1" />
+  
+  <!-- Геометрія монограми з точним накладанням елементів -->
+  <g fill="url(#gold-gradient)">
+    <!-- Ліва подвійна вертикальна лінія (::before з сумарним зсувом) -->
+    <rect x="15" y="11.5" width="2" height="21" rx="1" />
+    <rect x="17" y="11.5" width="2" height="21" rx="1" />
+    
+    <!-- Права поодинока вертикальна лінія (::before зсув +8px) -->
+    <rect x="25" y="11.5" width="2" height="21" rx="1" />
+    
+    <!-- Верхня горизонтальна лінія літери (::after оригінальна верхня планка) -->
+    <rect x="15" y="11.5" width="12" height="2" rx="1" />
+    
+    <!-- Нижня горизонтальна перемичка (box-shadow: 0 10px 0 зсув вниз) -->
+    <rect x="15" y="21.5" width="12" height="2" rx="1" />
+  </g>
+</svg>
