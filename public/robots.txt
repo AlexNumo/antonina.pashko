@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /dist/
+
+# Пряме посилання на твою мапу сайту для всіх пошукових роботів
+Sitemap: https://tonypashko.com/sitemap.xml
