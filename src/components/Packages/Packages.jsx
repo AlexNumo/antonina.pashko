@@ -4,8 +4,15 @@ import { COURSE_CONFIG } from '../../config/courseConfig';
 import BackgroundBTN from '../../assets/videos/background_btn_optimized.mp4';
 import BackgroundCard from '../../assets/videos/Background_Card_optimized.mp4';
 
-export default function Packages({ onSelectPackage }) {
+export default function Packages() {
   const visiblePackages = Object.values(COURSE_CONFIG.packages).filter((pkg) => !pkg.hidden);
+
+  // Словник посилань для кожного пакету
+  const paymentLinks = {
+    base: 'https://secure.wayforpay.com/button/b2860b6ba58a1',
+    support: 'https://secure.wayforpay.com/button/b2a8990c0471e',
+    vip: 'https://secure.wayforpay.com/button/b23ef4af753b2'
+  };
 
   const bonuses = [
     {
@@ -18,7 +25,7 @@ export default function Packages({ onSelectPackage }) {
     },
     {
       id: 'value-guide',
-      text: 'PDF-інтенсив **«7 ознак, що ти заслуговуєш свою цінність»** — практичний розбір для виходу із пастки доведення результату.'
+      text: 'PDF-інтенсив **«7 ознак, що ти заслуговуєш свою цінність»** — practical розбір для виходу із пастки доведення результату.'
     }
   ];
 
@@ -51,6 +58,7 @@ export default function Packages({ onSelectPackage }) {
             const isVip = pkg.id === 'vip';
             
             const hasVideo = isSupport || isVip; 
+            const paymentUrl = paymentLinks[pkg.id] || '#';
 
             return (
               <article 
@@ -92,17 +100,17 @@ export default function Packages({ onSelectPackage }) {
                     <small>ціна першого потоку</small>
                   </div>
 
-                    {hasPlacesLimit && (
-                      <div className={`${styles.placesBadge} ${isSoldOut ? styles.placesOut : styles.placesLeft}`}>
-                        {isSoldOut ? (
-                          'Місця закінчилися'
-                        ) : (
-                          <>
-                            Цей потік закривається після набору групи
-                          </>
-                        )}
-                      </div>
-                    )}
+                  {hasPlacesLimit && (
+                    <div className={`${styles.placesBadge} ${isSoldOut ? styles.placesOut : styles.placesLeft}`}>
+                      {isSoldOut ? (
+                        'Місця закінчилися'
+                      ) : (
+                        <>
+                          Цей потік закривається після набору групи
+                        </>
+                      )}
+                    </div>
+                  )}
 
                   <div className={styles.bonusWrapper}>
                     <div className={styles.bonusHeader}>
@@ -130,9 +138,12 @@ export default function Packages({ onSelectPackage }) {
                   {isSoldOut ? (
                     <span className={styles.btnDisabled}>Місць немає</span>
                   ) : (
-                    <button 
-                      onClick={() => onSelectPackage(pkg.name)}
+                    <a 
+                      href={paymentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`${pkg.featured ? 'btn-light' : 'btn-primary'} ${hasVideo ? styles.videoBtn : styles.standardBtn}`}
+                      style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                     >
                       {hasVideo && (
                         <video 
@@ -145,9 +156,9 @@ export default function Packages({ onSelectPackage }) {
                         />
                       )}
                       <span className={hasVideo ? styles.videoBtnText : styles.btnText}>
-                        Обрати {pkg.name}
+                        Оплатити
                       </span>
-                    </button>
+                    </a>
                   )}
                 </div>
               </article>
