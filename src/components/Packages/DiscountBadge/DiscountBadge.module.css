@@ -1,113 +1,72 @@
-.badgeWrapper {
+/* Контейнер, який фіксується в самому кутку картки */
+.ribbonContainer {
   position: absolute;
-  top: -15px;
-  right: 15px;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-}
-
-.neonGlow {
-  position: absolute;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: var(--gold-gradient);
-  filter: blur(15px);
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
   pointer-events: none;
-}
-
-.badge {
-  position: relative;
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--gold-gradient);
-  color: #0e0d0c;
-  font-weight: 900;
-  font-size: 1.2rem;
-  font-family: inherit;
-  letter-spacing: -0.02em;
-  border: 1.5px solid rgba(212, 163, 115, 0.4);
-  box-shadow: 0 10px 30px rgba(212, 163, 115, 0.5);
-  cursor: pointer;
+  z-index: 10;
   overflow: hidden;
-  transform: rotate(5deg);
-  pointer-events: auto;
-  animation: goldPulse 2.2s infinite ease-in-out;
+  /* Обрізає краї стрічки по контуру картки */
 }
 
+/* Сама стрічка, яка розгортається під кутом 45 градусів */
+.ribbon {
+  position: absolute;
+  top: 15px;
+  /* було 18px */
+  right: -32px;
+  /* було -28px (зсув трохи далі в кут, щоб відкрити більше простору) */
+  width: 135px;
+  height: 26px;
+  
+  /* можна зробити трішки тоншою, щоб виглядало витончено */
+  /* ... решта стилів ... */
+}
+
+.text {
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: inherit;
+  /* Скасовуємо поворот для тексту, щоб він крутився разом зі стрічкою */
+  transform: none;
+}
+
+/* Ефект преміального бліку вдовж всієї стрічки */
 .shimmerEffect {
   position: absolute;
   top: 0;
   left: -150%;
-  width: 50%;
+  width: 40px;
   height: 100%;
   background: linear-gradient(90deg,
       rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.35) 50%,
       rgba(255, 255, 255, 0) 100%);
-  transform: skewX(-25deg);
-  animation: shimmerAnim 3.5s infinite linear;
+  transform: skewX(-20deg);
+  animation: ribbonShimmer 4s infinite linear;
 }
 
-@keyframes goldPulse {
+@keyframes ribbonShimmer {
   0% {
-    box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+    left: -110%;
   }
 
-  50% {
-    box-shadow: 0 12px 40px rgba(212, 163, 115, 0.7);
+  20% {
+    left: 130%;
   }
 
   100% {
-    box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+    left: 130%;
   }
 }
 
-@keyframes shimmerAnim {
-  0% {
-    left: -150%;
-  }
-
-  30% {
-    left: 150%;
-  }
-
-  100% {
-    left: 150%;
-  }
-}
-
-.badge .text {
-  position: relative;
-  z-index: 2;
-  text-shadow: none;
-}
-
+/* Альтернативний благородний варіант (наприклад, для VIP тарифу) */
 .accentVariant {
-  background: var(--paper);
-  color: var(--gold-light);
-  border-color: var(--gold);
-  box-shadow: 0 10px 30px rgba(212, 163, 115, 0.2);
-  animation: goldPulseAccent 2.2s infinite ease-in-out;
-}
-
-@keyframes goldPulseAccent {
-  0% {
-    border-color: rgba(212, 163, 115, 0.4);
-  }
-
-  50% {
-    border-color: rgba(212, 163, 115, 0.9);
-  }
-
-  100% {
-    border-color: rgba(212, 163, 115, 0.4);
-  }
+  background: #1a1917;
+  color: var(--gold-light, #d4a373);
+  border: 1px solid rgba(212, 163, 115, 0.3);
 }

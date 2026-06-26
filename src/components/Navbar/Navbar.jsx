@@ -13,10 +13,10 @@ export default function Navbar() {
       </a>
       
       <ul className={styles.navLinks}>
-        <li><a href="#program">Програма</a></li>
-        <li><a href="#about">Спікер</a></li>
+        <li><a href="/#program">Програма</a></li>
+        <li><a href="/#about">Спікер</a></li>
         <li>
-          <a href="#packages" className={styles.navCta}>
+          <a href="/#packages" className={styles.navCta}>
             ЗАПИСАТИСЯ
           </a>
         </li>

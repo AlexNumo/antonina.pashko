@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Стилі для сторінок статусу оплати (Успішно / Помилка)
+   ========================================================================== */
+
+.statusSection {
+  min-height: 80vh;
+  /* Щоб секція займала майже весь екран між Navbar та Footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 80px 20px;
+  /* Великий відступ зверху, щоб не перекривав фіксований Navbar */
+  background-color: #0E0D0C;
+  /* Твій базовий глибокий темний колір */
+  font-family: 'Manrope', sans-serif;
+  color: #c2b9a4;
+  /* М'який світлий колір для тексту */
+}
+
+.card {
+  background: #171614;
+  /* Трохи світліший відтінок для об'єму картки */
+  border: 1px solid rgba(231, 188, 145, 0.15);
+  /* Дуже тонка інтелігентна золотава рамка */
+  border-radius: 16px;
+  max-width: 580px;
+  width: 100%;
+  padding: 50px 40px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Круглі іконки статусів */
+.icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 600;
+  margin: 0 auto 24px auto;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Колір іконки Успіху (М'який зелено-оливковий з підсвічуванням) */
+.successIcon {
+  background: rgba(139, 163, 128, 0.1);
+  color: #8BA380;
+  border: 1px solid rgba(139, 163, 128, 0.3);
+  box-shadow: 0 0 20px rgba(139, 163, 128, 0.05);
+}
+
+/* Колір іконки Помилки (Приглушений коралово-червоний) */
+.failureIcon {
+  background: rgba(211, 118, 118, 0.1);
+  color: #D37676;
+  border: 1px solid rgba(211, 118, 118, 0.3);
+  box-shadow: 0 0 20px rgba(211, 118, 118, 0.05);
+}
+
+/* Заголовки */
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #e7bc91;
+  /* Твоє фірмове благородне золото */
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 14px 0;
+  letter-spacing: 0.01em;
+}
+
+/* Опис */
+.card p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  opacity: 0.85;
+}
+
+/* Блок з покроковими інструкціями */
+.instructions {
+  background: rgba(231, 188, 145, 0.03);
+  /* Ледь помітна золотава плашка */
+  border-left: 3px solid #e7bc91;
+  /* Красивий акцентний бордюр ліворуч */
+  border-radius: 4px;
+  padding: 24px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.instructions p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #e7bc91;
+  opacity: 1;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.instructions li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c2b9a4;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.instructions li:last-child {
+  margin-bottom: 0;
+}
+
+/* Контейнер для кнопок на сторінці помилки */
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Якщо екран мобільного дуже маленький, адаптуємо відступи та кнопки */
+@media (max-width: 576px) {
+  .statusSection {
+    padding-top: 100px;
+  }
+
+  .card {
+    padding: 35px 20px;
+  }
+
+  .card h2 {
+    font-size: 26px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .actions a,
+  .card a {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}

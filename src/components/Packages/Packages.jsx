@@ -83,12 +83,15 @@ export default function Packages() {
                   />
                 )}
 
+                {/* ЗМІЩЕНО СЮДИ: Тепер бейдж лежить прямо в .card, де працює overflow: hidden */}
+                <DiscountBadge 
+                  oldPrice={pkg.oldPrice} 
+                  newPrice={pkg.price} 
+                  variant={isVip ? 'accent' : 'circle'} 
+                />
+
                 <div className={styles.cardContent}>
-                  <DiscountBadge 
-                    oldPrice={pkg.oldPrice} 
-                    newPrice={pkg.price} 
-                    variant={isVip ? 'accent' : 'circle'} 
-                  />
+                  {/* ПУСТО: Звідси ми компонент DiscountBadge видалили */}
                   
                   <span className={styles.tag}>{pkg.tag}</span>
                   <h3>{pkg.name}</h3>

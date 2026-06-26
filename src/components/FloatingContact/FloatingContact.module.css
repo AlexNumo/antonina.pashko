@@ -1,0 +1,184 @@
+.wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Вирівнюємо по правому краю */
+  gap: 14px;
+}
+
+/* Контейнер для кожної пари "підказка + кнопка" */
+.btnContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Стилі текстової підказки зліва */
+.tooltip {
+  position: absolute;
+  right: calc(100% + 15px);
+  /* Стає чітко зліва від кнопки з відступом */
+  background: #171614;
+  color: #e7bc91;
+  border: 1px solid rgba(231, 188, 145, 0.2);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  /* Щоб текст не переносився */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  /* Щоб мишка не чіплялася за неї */
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Поява підказки при наведенні на контейнер кнопки */
+.btnContainer:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Головна кнопка */
+.mainBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gold-gradient, linear-gradient(135deg, #e7bc91 0%, #bd9368 100%));
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(212, 163, 115, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+}
+
+.mainBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px rgba(212, 163, 115, 0.5);
+}
+
+.iconContainer {
+  color: #0e0d0c;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.mainBtnActive {
+  transform: rotate(90deg);
+  background: #171614;
+  border: 1px solid rgba(231, 188, 145, 0.3);
+}
+
+.mainBtnActive .iconContainer {
+  color: #e7bc91;
+}
+
+/* Контейнер для додаткових кнопок */
+.popups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.popupsOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Допоміжні круглі кнопки */
+.subBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+  color: #ffffff;
+}
+
+.subBtn:hover {
+  transform: scale(1.1);
+}
+
+.tgBtn {
+  background: #229ED9;
+}
+
+.tgBtn:hover {
+  background: #24A1DE;
+}
+
+.questionBtn {
+  background: #171614;
+  border: 1px solid rgba(231, 188, 145, 0.4);
+  color: #e7bc91;
+}
+
+.questionBtn:hover {
+  background: #211f1c;
+}
+
+.instaBtn {
+  background: dimgray;
+  /* фолбек */
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.instaBtn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 16px rgba(214, 36, 159, 0.4);
+}
+
+/* Мобільна адаптація (приховуємо тултіпи на смартфонах, бо там немає ховеру) */
+@media (max-width: 640px) {
+  .wrapper {
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+  }
+
+  .popups {
+    gap: 10px;
+  }
+
+  .mainBtn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .subBtn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .iconContainer {
+    font-size: 24px;
+  }
+
+  .tooltip {
+    display: none !important;
+    /* На тач-екранах ховер працює криво, тому краще вимкнути */
+  }
+}

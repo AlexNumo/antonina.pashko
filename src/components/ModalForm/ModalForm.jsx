@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './ModalForm.module.css';
-import { COURSE_CONFIG } from '../../config/courseConfig';
 
-export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
+export default function ModalForm({ isOpen, onClose, style }) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({ name: '', contact: '', message: '' });
@@ -11,21 +10,22 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
 
   const nameInputRef = useRef(null);
   
-  const handleCloseWithReset = () => {
+  const resetFormState = () => {
+    setSent(false);
+    setLoading(false);
+    setAcceptedTerms(false);
+    setShowTermsError(false);
+    setFormValues({ name: '', contact: '', message: '' });
+  };
+
+  const handleSimpleClose = () => {
     onClose();
-    setTimeout(() => {
-      setSent(false);
-      setLoading(false);
-      setAcceptedTerms(false);
-      setShowTermsError(false);
-      setFormValues({ name: '', contact: '', message: '' });
-    }, 300);
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
-        handleCloseWithReset();
+        handleSimpleClose();
       }
     };
 
@@ -56,7 +56,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
     }
     
     clean = clean.replace(/^(https?:\/\/)?(www\.)?(instagram\.com|instagr\.am|t\.me)\//i, '');
-    
     clean = clean.replace(/^@/, '');
     
     return clean;
@@ -75,11 +74,6 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
 
     const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
     
-    const matchedPackage = Object.values(COURSE_CONFIG.packages).find(
-      (pkg) => pkg.name === selectedPackage
-    );
-    const currentPrice = matchedPackage ? matchedPackage.price : 'Уточнюється особисто';
-
     const now = new Date();
     const formattedDate = now.toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' });
     const formattedTime = now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
@@ -87,8 +81,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
 
     const finalData = {
       dateTime: fullDateTime,
-      packageName: selectedPackage || 'Зворотній звʼязок (загальний)',
-      price: currentPrice,
+      packageName: 'Зворотній звʼязок (загальний)',
       name: formValues.name.trim(),
       contact: cleanContactInput(formValues.contact),
       message: formValues.message.trim()
@@ -111,7 +104,12 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
       if (response.ok) {
         setSent(true);
         setLoading(false);
-        setTimeout(() => { handleCloseWithReset(); }, 4000);
+        setTimeout(() => { 
+          onClose();
+          setTimeout(() => {
+            resetFormState();
+          }, 300);
+        }, 4000);
       } else {
         throw new Error('Сервер повернув помилку');
       }
@@ -124,9 +122,9 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
   };
 
   return (
-    <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`} onClick={handleCloseWithReset} style={style}>
+    <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`} onClick={handleSimpleClose} style={style}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={handleCloseWithReset}>×</button>
+        <button className={styles.closeBtn} onClick={handleSimpleClose}>×</button>
 
         {sent ? (
           <div className={styles.successState}>
@@ -141,8 +139,8 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
         ) : (
           <form className={styles.form} onSubmit={handleFormSubmit}>
             <div className={styles.formHeader}>
-              <h3>Форма запису</h3>
-              <p>Заявка на формат: <strong>{selectedPackage || 'Обрати особисто з Антоніною'}</strong></p>
+              <h3>Зворотній зв'язок</h3>
+              <p>Задай своє питання спікеру</p>
             </div>
 
             <label className={styles.fieldLabel}>
@@ -173,7 +171,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
             </label>
 
             <label className={styles.fieldLabel}>
-              Що важливо передати Антоніні?
+              Твоє запитання
               <textarea 
                 rows="4" 
                 placeholder="Коротко про твій запит або життєву ситуацію..." 
@@ -214,7 +212,7 @@ export default function ModalForm({ isOpen, onClose, selectedPackage, style }) {
               className={styles.submitBtn} 
               disabled={loading}
             >
-              {loading ? 'Надсилаю...' : `Записатися ${selectedPackage ? `на "${selectedPackage}"` : ''}`}
+              {loading ? 'Надсилаю...' : 'Надіслати запитання'}
             </button>
           </form>
         )}

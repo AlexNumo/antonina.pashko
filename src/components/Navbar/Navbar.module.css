@@ -121,7 +121,14 @@
 
 @media (max-width: 640px) {
   .siteNav {
-    padding: 1rem;
+    /* Додаємо safe-area-inset-top: якщо є шторка або виріз, падінг автоматично збільшиться */
+    padding: calc(0.8rem + env(safe-area-inset-top, 0px)) 1rem 0.8rem 1rem;
+
+    /* Допомагає мобільним браузерам не смикати елемент при зміні висоти шторки */
+    will-change: transform;
+
+    /* Гарантуємо, що навбар притиснутий жорстко до верхньої межі екрану */
+    top: 0;
   }
 
   .navLinks li:not(:last-child) {
