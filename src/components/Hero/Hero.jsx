@@ -19,7 +19,7 @@ export default function Hero() {
         </p>
 
         <div className={styles.facts} aria-label="Ключові параметри курсу">
-          <span>7 днів</span>
+          <span>7+1 днів</span>
           <span>15-30 хв/день</span>
           <span>доступ назавжди</span>
         </div>

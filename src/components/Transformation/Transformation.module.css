@@ -103,6 +103,19 @@
   opacity: 0.5;
 }
 
+.bonusDay {
+  border: 1px solid rgba(226, 187, 253, 0.2);
+  /* Світло-фіолетовий або колір твоїх подарунків */
+  background: rgba(30, 24, 36, 0.5);
+}
+
+/* Колір плашки для бонусного дня */
+.bonusBadge {
+  background: linear-gradient(135deg, #e2bbfd 0%, #a779ff 100%) !important;
+  color: #121212 !important;
+  font-weight: 700;
+}
+
 @media (max-width: 960px) {
   .header {
     grid-template-columns: 1fr;

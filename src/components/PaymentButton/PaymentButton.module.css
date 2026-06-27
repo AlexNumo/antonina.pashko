@@ -1,0 +1,55 @@
+.payButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+  height: 54px;
+  background: linear-gradient(135deg, #0488cd 0%, #036b00 100%);
+  /* Можна замінити на фірмовий градієнт */
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(4, 136, 205, 0.3);
+}
+
+.payButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(4, 136, 205, 0.45);
+}
+
+.payButton:active {
+  transform: translateY(1px);
+}
+
+.btnText {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+  z-index: 2;
+  letter-spacing: 0.02em;
+}
+
+/* Ефект легкого внутрішнього відблиску */
+.glowEffect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.payButton:hover .glowEffect {
+  left: 200%;
+  transition: left 0.75s ease-in-out;
+}

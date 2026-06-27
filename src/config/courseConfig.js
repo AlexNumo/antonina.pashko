@@ -1,6 +1,6 @@
 export const COURSE_CONFIG = {
   title: 'Точка переходу',
-  subtitle: '7-денний онлайн-практикум',
+  subtitle: '7+1 - денний онлайн-практикум',
   packages: {
     base: {
       id: 'base',
@@ -12,8 +12,8 @@ export const COURSE_CONFIG = {
       featured: false,
       hidden: false,
       features: [
-        '7 відео-уроків',
-        '7 аудіопрактик',
+        '8 відео-уроків',
+        '8 аудіопрактик',
         'робочий зошит',
         'доступ назавжди',
         'старт одразу після оплати',

@@ -451,3 +451,179 @@
   color: #ffffff;
   font-weight: 500;
 }
+
+/* Робимо плашку бонусу клікабельною */
+.clickableBonus {
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.clickableBonus:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Новий бейдж подарунка після списку послуг */
+.giftBadgeAfterFeatures {
+  display: flex;
+  alignItems: center;
+  gap: 12px;
+  margin: 16px 0 24px 0;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  borderRadius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.giftBadgeAfterFeatures:hover {
+  background: rgba(255, 255, 255, 0.08);
+  borderColor: rgba(255, 255, 255, 0.3);
+}
+
+.giftIconContainer {
+  color: #e2bbfd;
+  /* Можна підставити акцентний колір курсу */
+  display: flex;
+  align-items: center;
+}
+
+.giftBadgeText {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Модальне вікно (Overlay) */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+/* Контентна частина модалки */
+.modalContent {
+  background: #121212;
+  /* Темний фон під стиль сайту */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modalClose:hover {
+  color: #fff;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #e2bbfd;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #fff;
+}
+
+.modalSubtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.modalBonusList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalBonusItem {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  padding-left: 12px;
+  border-left: 2px solid #e2bbfd;
+}
+
+.pulsingGift {
+  animation: pulse 2s infinite ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(226, 187, 253, 0));
+  }
+
+  50% {
+    transform: scale(1.45);
+    /* Додає легке магічне неонове світіння в пік збільшення */
+    filter: drop-shadow(0 0 6px rgba(226, 187, 253, 0.6));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(226, 187, 253, 0));
+  }
+}
+
+/* Анімації */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
