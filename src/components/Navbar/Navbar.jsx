@@ -3,7 +3,7 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   return (
     <nav className={styles.siteNav} aria-label="Головна навігація">
-      <a href="#" className={styles.navLogo} aria-label="Антоніна Пашко — на початок">
+      <a href="/#" className={styles.navLogo} aria-label="Антоніна Пашко — на початок">
         <div 
           className={styles.logoMonogram} 
           aria-hidden="true"
